@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Shooter;
 
 public class IndependentShooter extends Command {
-  private final ExampleSubsystem m_Subsystem;
+  private final Shooter m_Subsystem;
   private final DoubleSupplier m_RStick;
   private final DoubleSupplier m_LStick;
   private final BooleanSupplier m_RBumper;
@@ -31,7 +31,7 @@ public class IndependentShooter extends Command {
     int i = 0;
   
   /** Creates a new IndependentShooter. */
-  public IndependentShooter(ExampleSubsystem subsystem, DoubleSupplier rStick, DoubleSupplier lStick, BooleanSupplier rBumper) {
+  public IndependentShooter(Shooter subsystem, DoubleSupplier rStick, DoubleSupplier lStick, BooleanSupplier rBumper) {
     m_Subsystem = subsystem;
     m_RStick = rStick;
     m_LStick = lStick;

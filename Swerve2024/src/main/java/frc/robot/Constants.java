@@ -24,6 +24,15 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  public static class OperatorConstants {
+    public static final int kDriverControllerPort = 0;
+  }
+  public static class ShooterSpeeds {
+    public static final double bottomSpeedIn = .25;
+    public static final double bottomSpeedOut = -.25;
+    public static final double topSpeedIn = .25;
+    public static final double topSpeedOut = -.25;
+  }
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
@@ -53,8 +62,8 @@ public final class Constants {
 
     // SPARK MAX CAN IDs
 
-    public static final int kFrontLeftDrivingCanId = 11;
-    public static final int kFrontLeftTurningCanId = 10;
+    public static final int kFrontLeftDrivingCanId = 21;
+    public static final int kFrontLeftTurningCanId = 20;
 
     public static final int kFrontRightDrivingCanId = 26;
     public static final int kFrontRightTurningCanId = 13;
@@ -121,6 +130,8 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+
+    public static final int kcoDriverControllerPort = 1;
     public static final double kDriveDeadband = 0.05;
   }
 
