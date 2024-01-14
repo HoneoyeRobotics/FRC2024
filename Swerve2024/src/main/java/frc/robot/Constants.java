@@ -27,12 +27,14 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
   public static class ShooterSpeeds {
     public static final double bottomSpeedIn = .25;
     public static final double bottomSpeedOut = -.25;
     public static final double topSpeedIn = .25;
     public static final double topSpeedOut = -.25;
   }
+
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
@@ -72,18 +74,21 @@ public final class Constants {
     public static final int kRearLeftTurningCanId = 22;
 
     public static final int kRearRightDrivingCanId = 24;
-    public static final int kRearRightTurningCanId = 12 ;
+    public static final int kRearRightTurningCanId = 12;
 
     public static final boolean kGyroReversed = false;
   }
 
   public static final class ModuleConstants {
-    // The MAXSwerve module can be configured with one of three pinion gears: 12T, 13T, or 14T.
-    // This changes the drive speed of the module (a pinion gear with more teeth will result in a
+    // The MAXSwerve module can be configured with one of three pinion gears: 12T,
+    // 13T, or 14T.
+    // This changes the drive speed of the module (a pinion gear with more teeth
+    // will result in a
     // robot that drives faster).
     public static final int kDrivingMotorPinionTeeth = 13;
 
-    // Invert the turning encoder, since the output shaft rotates in the opposite direction of
+    // Invert the turning encoder, since the output shaft rotates in the opposite
+    // direction of
     // the steering motor in the MAXSwerve Module.
     public static final boolean kTurningEncoderInverted = true;
 
@@ -91,7 +96,8 @@ public final class Constants {
     public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60;
     public static final double kWheelDiameterMeters = 0.0762;
     public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
-    // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15 teeth on the bevel pinion
+    // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15
+    // teeth on the bevel pinion
     public static final double kDrivingMotorReduction = (45.0 * 22) / (kDrivingMotorPinionTeeth * 15);
     public static final double kDriveWheelFreeSpeedRps = (kDrivingMotorFreeSpeedRps * kWheelCircumferenceMeters)
         / kDrivingMotorReduction;

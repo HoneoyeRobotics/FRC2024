@@ -12,28 +12,36 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  public Shooter() {}
-public boolean note = false;
-public VictorSPX topmotor = new VictorSPX(10);
-public VictorSPX bottemmotor = new VictorSPX(11);
-public AnalogInput noteSensor = new AnalogInput(0);
-public void runbottommotor (double speed) {
-  if ((speed < 0.05 ) && (speed > -0.05)) speed = 0;
-  bottemmotor.set(ControlMode.PercentOutput, speed);
-}
-public void runtopmotor (double speed) {
-  if ((speed < 0.05 ) && (speed > -0.05)) speed = 0;
-  topmotor.set(ControlMode.PercentOutput, speed *-1);
-}
+  public Shooter() {
+  }
 
-public boolean noteCheck() {
-    if (noteSensor.getValue() < 500 && noteSensor.getValue() > 230) note = true;
-    else note = false;
-  return note;
-}
+  public boolean note = false;
+  public VictorSPX topmotor = new VictorSPX(10);
+  public VictorSPX bottemmotor = new VictorSPX(11);
+  public AnalogInput noteSensor = new AnalogInput(0);
 
+  public void runbottommotor(double speed) {
+    if ((speed < 0.05) && (speed > -0.05))
+      speed = 0;
+    bottemmotor.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void runtopmotor(double speed) {
+    if ((speed < 0.05) && (speed > -0.05))
+      speed = 0;
+    topmotor.set(ControlMode.PercentOutput, speed * -1);
+  }
+
+  public boolean noteCheck() {
+    if (noteSensor.getValue() < 500 && noteSensor.getValue() > 230)
+      note = true;
+    else
+      note = false;
+    return note;
+  }
 
   /**
    * Example command factory method.
@@ -50,7 +58,8 @@ public boolean noteCheck() {
   }
 
   /**
-   * An example method querying a boolean state of the subsystem (for example, a digital sensor).
+   * An example method querying a boolean state of the subsystem (for example, a
+   * digital sensor).
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */

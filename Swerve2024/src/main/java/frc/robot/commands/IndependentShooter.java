@@ -19,17 +19,17 @@ public class IndependentShooter extends Command {
   private final DoubleSupplier m_RStick;
   private final DoubleSupplier m_LStick;
   private final BooleanSupplier m_RBumper;
-    double topSpeed = 0;
-    double bottomSpeed = 0;
-    double topSpeedIn = 0;
-    double bottomSpeedIn = 0;
-    double topSpeedOut = 0;
-    double bottomSpeedOut = 0;
-    double leftStick = 0;
-    double rightStick = 0;
-    boolean timerBool = false;
-    int i = 0;
-  
+  double topSpeed = 0;
+  double bottomSpeed = 0;
+  double topSpeedIn = 0;
+  double bottomSpeedIn = 0;
+  double topSpeedOut = 0;
+  double bottomSpeedOut = 0;
+  double leftStick = 0;
+  double rightStick = 0;
+  boolean timerBool = false;
+  int i = 0;
+
   /** Creates a new IndependentShooter. */
   public IndependentShooter(Shooter subsystem, DoubleSupplier rStick, DoubleSupplier lStick, BooleanSupplier rBumper) {
     m_Subsystem = subsystem;
@@ -55,23 +55,23 @@ public class IndependentShooter extends Command {
     topSpeed = m_RStick.getAsDouble();
     bottomSpeed = m_LStick.getAsDouble();
     // leftStick = m_LStick.getAsDouble();
-    //   if ((leftStick < 0.08 ) && (leftStick > -0.08)) leftStick = 0;
+    // if ((leftStick < 0.08 ) && (leftStick > -0.08)) leftStick = 0;
     // rightStick = m_RStick.getAsDouble();
-    //   if ((rightStick < 0.08 ) && (rightStick > -0.08)) rightStick = 0;
+    // if ((rightStick < 0.08 ) && (rightStick > -0.08)) rightStick = 0;
 
     // if (leftStick > 0)
-    //   bottomSpeed = Constants.ShooterSpeeds.bottomSpeedIn;
+    // bottomSpeed = Constants.ShooterSpeeds.bottomSpeedIn;
     // else if (leftStick < 0)
-    //   bottomSpeed = Constants.ShooterSpeeds.bottomSpeedOut;
+    // bottomSpeed = Constants.ShooterSpeeds.bottomSpeedOut;
 
     // if (rightStick > 0)
-    //   topSpeed = Constants.ShooterSpeeds.topSpeedIn;
+    // topSpeed = Constants.ShooterSpeeds.topSpeedIn;
     // else if (rightStick < 0)
-    //   topSpeed = Constants.ShooterSpeeds.topSpeedOut;
+    // topSpeed = Constants.ShooterSpeeds.topSpeedOut;
 
     if (m_RBumper.getAsBoolean() == true) {
       rightStick = m_RStick.getAsDouble();
-      if ((rightStick < 0.08 ) && (rightStick > -0.08)) 
+      if ((rightStick < 0.08) && (rightStick > -0.08))
         rightStick = 0;
       if (rightStick > 0)
         topSpeed = Constants.ShooterSpeeds.topSpeedIn;
