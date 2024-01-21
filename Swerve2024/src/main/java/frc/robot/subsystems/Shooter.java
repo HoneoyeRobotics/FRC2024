@@ -6,12 +6,15 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -19,20 +22,20 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean note = false;
-  public VictorSPX topmotor = new VictorSPX(10);
-  public VictorSPX bottemmotor = new VictorSPX(11);
-  public AnalogInput noteSensor = new AnalogInput(0);
+  public CANSparkMax topmotor = new CANSparkMax(Constants.ShooterConstants.TopMotorCanID, MotorType.kBrushless);
+  public CANSparkMax bottemmotor = new CANSparkMax(Constants.ShooterConstants.BottomMotorCanID, MotorType.kBrushless);
+  public AnalogInput noteSensor = new AnalogInput(Constants.ShooterConstants.NoteSensorInput);
 
   public void runbottommotor(double speed) {
     if ((speed < 0.05) && (speed > -0.05))
       speed = 0;
-    bottemmotor.set(ControlMode.PercentOutput, speed);
+    bottemmotor.set(speed);
   }
 
   public void runtopmotor(double speed) {
     if ((speed < 0.05) && (speed > -0.05))
       speed = 0;
-    topmotor.set(ControlMode.PercentOutput, speed * -1);
+    topmotor.set( speed * -1);
   }
 
   public boolean noteCheck() {

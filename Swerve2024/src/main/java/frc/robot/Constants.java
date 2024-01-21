@@ -28,11 +28,24 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
 
-  public static class ShooterSpeeds {
+  public static class ShooterConstants {
+    public static final int TopMotorCanID = 10;
+    public static final int BottomMotorCanID = 11;
+
     public static final double bottomSpeedIn = .25;
     public static final double bottomSpeedOut = -.25;
     public static final double topSpeedIn = .25;
     public static final double topSpeedOut = -.25;
+    public static final int NoteSensorInput = 0;
+  }
+
+  public static class ArmConstants {
+
+    public static final int LowerElbowCanID = 33;
+    public static final int UpperElbowCanID = 34;
+
+    public static final int LowerElbowTicksToDegrees = 2;
+    public static final int UpperElbowTicksToDegrees = 2;
   }
 
   public static final class DriveConstants {
@@ -46,9 +59,9 @@ public final class Constants {
     public static final double kRotationalSlewRate = 2.0; // percent per second (1 = 100%)
 
     // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(26.5);
+    public static final double kTrackWidth = Units.inchesToMeters(26);
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(26.5);
+    public static final double kWheelBase = Units.inchesToMeters(26);
     // Distance between front and back wheels on robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -138,6 +151,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
 
     public static final int kcoDriverControllerPort = 1;
+    public static final int kButtonBoardControllerPort = 2;
     public static final double kDriveDeadband = 0.05;
   }
 

@@ -74,9 +74,9 @@ public class IndependentShooter extends Command {
       if ((rightStick < 0.08) && (rightStick > -0.08))
         rightStick = 0;
       if (rightStick > 0)
-        topSpeed = Constants.ShooterSpeeds.topSpeedIn;
+        topSpeed = Constants.ShooterConstants.topSpeedIn;
       else if (rightStick < 0)
-        topSpeed = Constants.ShooterSpeeds.topSpeedOut;
+        topSpeed = Constants.ShooterConstants.topSpeedOut;
       bottomSpeed = topSpeed;
     }
 
