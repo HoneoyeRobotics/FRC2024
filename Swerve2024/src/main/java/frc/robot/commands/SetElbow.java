@@ -5,23 +5,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.RobotPrefs;
 import frc.robot.subsystems.Arms;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ResetUpperElbowEncoder extends InstantCommand {
-  private Arms arms;
+public class SetElbow extends InstantCommand {
 
-  public ResetUpperElbowEncoder(Arms arms) {
+  private Arms arms;
+  private double setPosition;
+
+  public SetElbow(Arms arms, double setPosition) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arms);
     this.arms = arms;
+    this.setPosition = setPosition;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arms.resetelbowEncoder();
+    arms.moveelbow(setPosition, true);
   }
 }

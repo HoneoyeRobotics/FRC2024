@@ -29,23 +29,26 @@ public final class Constants {
   }
 
   public static class ShooterConstants {
-    public static final int TopMotorCanID = 10;
-    public static final int BottomMotorCanID = 11;
+    public static final int TopMotorCanID = 31;
+    public static final int BottomMotorCanID = 32;
+    public static final int TheThingThatStabsTheNoteCanID = 8;
 
     public static final double bottomSpeedIn = .25;
     public static final double bottomSpeedOut = -.25;
     public static final double topSpeedIn = .25;
     public static final double topSpeedOut = -.25;
     public static final int NoteSensorInput = 0;
+     public static final int NoteSensorBInput = 2;
+    public static final int NoteSensorAInput = 1;
   }
 
   public static class ArmConstants {
 
-    public static final int LowerElbowCanID = 33;
-    public static final int UpperElbowCanID = 34;
+    public static final int ShoulderCanID = 33;
+    public static final int ElbowCanID = 34;
 
-    public static final int LowerElbowTicksToDegrees = 2;
-    public static final int UpperElbowTicksToDegrees = 2;
+    public static final int ShoulderTicksToDegrees = 2;
+    public static final int ElbowTicksToDegrees = 2;
   }
 
   public static final class DriveConstants {
@@ -156,8 +159,8 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+    public static final double kMaxSpeedMetersPerSecond = 2;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 

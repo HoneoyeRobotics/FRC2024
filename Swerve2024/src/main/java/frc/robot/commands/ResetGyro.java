@@ -5,23 +5,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.Arms;
+import frc.robot.subsystems.DriveSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ResetUpperElbowEncoder extends InstantCommand {
-  private Arms arms;
-
-  public ResetUpperElbowEncoder(Arms arms) {
+public class ResetGyro extends InstantCommand {
+  private DriveSubsystem m_drive;
+  public ResetGyro(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arms);
-    this.arms = arms;
+    m_drive = drive;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arms.resetelbowEncoder();
+    m_drive.zeroHeading();
+
   }
 }

@@ -11,12 +11,11 @@ import frc.robot.subsystems.Arms;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class MoveLowerElbow extends InstantCommand {
-
+public class MoveElbow extends InstantCommand {
   private Arms arms;
   private double modifier;
 
-  public MoveLowerElbow(Arms arms, double modifier) {
+  public MoveElbow(Arms arms, double modifier) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.arms = arms;
     this.modifier = modifier;
@@ -25,7 +24,6 @@ public class MoveLowerElbow extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arms.moveLowerElbow(RobotPrefs.getLowerElbowMovement() * modifier, false);
-
+    arms.moveelbow(RobotPrefs.getElbowMovement() * modifier, false);
   }
 }

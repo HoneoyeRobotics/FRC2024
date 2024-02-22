@@ -52,8 +52,8 @@ public class IndependentShooter extends Command {
   public void execute() {
     topSpeed = 0;
     bottomSpeed = 0;
-    topSpeed = m_RStick.getAsDouble();
-    bottomSpeed = m_LStick.getAsDouble();
+    topSpeed = m_RStick.getAsDouble() * -1;
+    bottomSpeed = m_LStick.getAsDouble()* -1;
     // leftStick = m_LStick.getAsDouble();
     // if ((leftStick < 0.08 ) && (leftStick > -0.08)) leftStick = 0;
     // rightStick = m_RStick.getAsDouble();

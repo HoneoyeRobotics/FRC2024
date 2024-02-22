@@ -15,13 +15,14 @@ public class ResetLowerElbowEncoder extends InstantCommand {
 
   public ResetLowerElbowEncoder(Arms arms) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(arms);
     this.arms = arms;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    arms.resetLowerElbowEncoder();
+    arms.resetshoulderEncoder();
 
   }
 }
