@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.ArmPosition;
 import frc.robot.subsystems.Arms;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -36,6 +37,7 @@ import java.util.List;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import frc.robot.commands.*;
+import frc.robot.commands.ArmMovement.ToggleArmPosition;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -71,9 +73,9 @@ public class RobotContainer {
                 // Configure the button bindings
                 configureButtonBindings();
                 // m_shooter.setDefaultCommand(new IndependentShooter(m_shooter,
-                //                 () -> m_codriverController.getRightY(),
-                //                 () -> m_codriverController.getLeftY() / 1.4,
-                //                 () -> m_codriverController.b().getAsBoolean()));
+                // () -> m_codriverController.getRightY(),
+                // () -> m_codriverController.getLeftY() / 1.4,
+                // () -> m_codriverController.b().getAsBoolean()));
                 // Configure default commands
                 m_robotDrive.setDefaultCommand(
                                 // The left stick controls translation of the robot.
@@ -100,11 +102,8 @@ public class RobotContainer {
                 SmartDashboard.putData("Pickup Shoulder", new SetShoulder(m_arms, 20));
                 SmartDashboard.putData("Pickup Elbow", new SetElbow(m_arms, -7));
 
-
-
                 SmartDashboard.putData("Amp Shoulder", new SetShoulder(m_arms, 27));
                 SmartDashboard.putData("Amp Elbow", new SetElbow(m_arms, -32));
-
 
                 SmartDashboard.putData("Speaker Shoulder", new SetShoulder(m_arms, -23));
                 SmartDashboard.putData("Speaker Elbow", new SetElbow(m_arms, 10));
@@ -112,143 +111,7 @@ public class RobotContainer {
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive));
 
                 SmartDashboard.putData("StabTheNote", new FireTheThingThatStabsTheNote(m_shooter));
-
-                SequentialCommandGroup AmpToHome = new SequentialCommandGroup(
-                       // new MoveArmsToPosition(m_arms, 27,-32, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 20, -28, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 12, -18, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 6, -12, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, -5, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Amp To Home",  AmpToHome);
-
-        
-
-                 SequentialCommandGroup HomeToAmp = new SequentialCommandGroup(
-                      //  new MoveArmsToPosition(m_arms, 0,0, RobotPrefs.getEndTolerance()),
-                     //   new MoveArmsToPosition(m_arms, 0,-4, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0,-9, RobotPrefs.getMiddleTolerance()),
-                        //new MoveArmsToPosition(m_arms, 6,-12, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 12,-18, RobotPrefs.getMiddleTolerance()),
-                       new MoveArmsToPosition(m_arms, 20,-28, RobotPrefs.getMiddleTolerance()),
-                           new MoveArmsToPosition(m_arms, 27,-32, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Home To Amp",  HomeToAmp);
-
-
-
-                SequentialCommandGroup PickUpToHome = new SequentialCommandGroup(
-                       // new MoveArmsToPosition(m_arms, 19,-7, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 15, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 12, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 6, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("PickUp To Home",  PickUpToHome);
-
-  SequentialCommandGroup HomeToPickUp = new SequentialCommandGroup(
-                       // new MoveArmsToPosition(m_arms, 0,0, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, -5, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 6, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 12, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 18, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 19, -7, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Home To PickUp",  HomeToPickUp);
-
-
-                  SequentialCommandGroup FeederToHome = new SequentialCommandGroup(
-                       // new MoveArmsToPosition(m_arms, 21,-26, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 14, -22, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 8, -15, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 2, -6, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, -3, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Feeder To Home",  FeederToHome);
-
-                 SequentialCommandGroup HomeToFeeder = new SequentialCommandGroup(
-                     //   new MoveArmsToPosition(m_arms, 0,0, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 0,-3, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 2,-6, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 8,-15, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 14,-22, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 21,-26, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Home To Feeder", HomeToFeeder);
-
-
-                SequentialCommandGroup SpeakerToHome = new SequentialCommandGroup(
-                        //new MoveArmsToPosition(m_arms, 12, -23, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 11, -18, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 6, -12, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 3, -7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, -4, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Speaker To Home",  SpeakerToHome);
-
-                SequentialCommandGroup HomeToSpeaker = new SequentialCommandGroup(
-                      //  new MoveArmsToPosition(m_arms, 0,0, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 0,-4, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 3,-7, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 6,-12, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 11,-18, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 12,-23, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Home To Speaker",  HomeToSpeaker);
-
-                
-                
-                SequentialCommandGroup driveToAmp = new SequentialCommandGroup(
-                      //  new MoveArmsToPosition(m_arms, 6,-14, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 12, -20, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 18, -26, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 27, -32, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Drive to Amp",  driveToAmp);
-
-                 SequentialCommandGroup AmpToPickUp = new SequentialCommandGroup(
-                       // new MoveArmsToPosition(m_arms, 27,-32, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 24, -26, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 22, -18, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 22, -10, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Amp To Pick Up",  AmpToPickUp);
-
-                 SequentialCommandGroup AmpToDrive = new SequentialCommandGroup(
-                     //   new MoveArmsToPosition(m_arms, 27,-32, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 24, -26, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 18, -18, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 10, -10, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 0, -10, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Amp To Drive",  AmpToDrive);
-
-                 SequentialCommandGroup PickUpToAmp = new SequentialCommandGroup(
-                      //  new MoveArmsToPosition(m_arms, 22, -10, RobotPrefs.getEndTolerance()),
-                        new MoveArmsToPosition(m_arms, 10, -10, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 12, -15, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 14, -20, RobotPrefs.getMiddleTolerance()),
-                        new MoveArmsToPosition(m_arms, 37, -32, RobotPrefs.getEndTolerance())
-                );
-
-                SmartDashboard.putData("Pick Up To Amp",  PickUpToAmp);
-
-                SmartDashboard.putData("Toggle stab pid", new ToggleStabPID(m_shooter));
+                // SmartDashboard.putData(m_arms);
 
         }
 
@@ -270,15 +133,26 @@ public class RobotContainer {
 
                 m_driverController.b().whileTrue(new RunShooter(m_shooter, -0.5));
                 m_driverController.y().whileTrue(new RunShooter(m_shooter, 0.5));
-                buttonBoard.button(11).onTrue(new MoveShoulder(m_arms, 1));
-                buttonBoard.button(10).onTrue(new MoveShoulder(m_arms, -1));
-                buttonBoard.button(3).onTrue(new MoveElbow(m_arms, 1));
-                buttonBoard.button(9).onTrue(new MoveElbow(m_arms, -1));
-                buttonBoard.button(5).onTrue(new ToggleArmPID(m_arms));
-                //shoot top
-                buttonBoard.button(7).onTrue(new ShootSequence(m_shooter, RobotPrefs.getSpeakerWait(), RobotPrefs.getSpeakerTimeout(), 1));
-                //shoot amp
-                buttonBoard.button(6).onTrue(new ShootSequence(m_shooter, RobotPrefs.getAmpWait(), RobotPrefs.getAmpTimeout(), RobotPrefs.getShooterAmpSpeed()));
+                buttonBoard.axisLessThan(0,-0.2).onTrue(new MoveShoulder(m_arms, 1));
+                buttonBoard.axisGreaterThan(0, 0.2).onTrue(new MoveShoulder(m_arms, -1));
+                buttonBoard.axisLessThan(1,-0.2).onTrue(new MoveElbow(m_arms, -1));
+                buttonBoard.axisGreaterThan(1, 0.2).onTrue(new MoveElbow(m_arms, 1));
+                buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
+                // shoot top
+                buttonBoard.button(5).onTrue(new ShootSequence(m_shooter, 0.5,
+                                1.5, 1));
+                // shoot amp
+                buttonBoard.button(4).onTrue(new ShootSequence(m_shooter, 0.5, 1, 0.25));
+
+                buttonBoard.button(11).onTrue(new ArmHome(m_arms));
+                buttonBoard.button(3).onTrue(new ArmPickup(m_arms));
+                buttonBoard.button(2).onTrue(new ArmAmp(m_arms));
+                buttonBoard.button(6).onTrue(new ArmSpeaker(m_arms));
+                buttonBoard.button(7).onTrue(new ArmFeeder(m_arms));
+                buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
+               
+                
+                
         }
 
         /**
@@ -290,7 +164,7 @@ public class RobotContainer {
                 // Create config for trajectory
                 TrajectoryConfig config = new TrajectoryConfig(
                                 AutoConstants.kMaxSpeedMetersPerSecond,
-                                
+
                                 AutoConstants.kMaxAccelerationMetersPerSecondSquared)
                                 // Add kinematics to ensure max speed is actually obeyed
                                 .setKinematics(DriveConstants.kDriveKinematics);
@@ -301,9 +175,8 @@ public class RobotContainer {
                                 new Pose2d(0, 0, new Rotation2d(0)),
                                 // Pass through these two interior waypoints, making an 's' curve path
                                 List.of(new Translation2d(Units.inchesToMeters(60), 0)
-                                        
-                                        
-                                        ),
+
+                                ),
                                 // End 2 meters straight ahead of where we started, facing forward
                                 new Pose2d(Units.inchesToMeters(72), Units.inchesToMeters(-48), new Rotation2d(180)),
                                 config);
@@ -313,14 +186,12 @@ public class RobotContainer {
                                 new Pose2d(2, 0, new Rotation2d(90)),
                                 // Pass through these two interior waypoints, making an 's' curve path
                                 List.of(
-                                        new Translation2d(0.5,0.5)
-                                        
-                                        
-                                        ),
+                                                new Translation2d(0.5, 0.5)
+
+                                ),
                                 // End 2 meters straight ahead of where we started, facing forward
                                 new Pose2d(0, 0, new Rotation2d(0)),
                                 config);
-
 
                 var thetaController = new ProfiledPIDController(
                                 AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
@@ -338,8 +209,7 @@ public class RobotContainer {
                                 m_robotDrive::setModuleStates,
                                 m_robotDrive);
 
-
-                                  SwerveControllerCommand swerveControllerCommand2 = new SwerveControllerCommand(
+                SwerveControllerCommand swerveControllerCommand2 = new SwerveControllerCommand(
                                 exampleTrajectory2,
                                 m_robotDrive::getPose, // Functional interface to feed supplier
                                 DriveConstants.kDriveKinematics,
@@ -351,17 +221,17 @@ public class RobotContainer {
                                 m_robotDrive::setModuleStates,
                                 m_robotDrive);
 
-
                 // Reset odometry to the starting pose of the trajectory.
                 m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
                 // Run path following command, then stop at the end.
                 return swerveControllerCommand
-               // .andThen(swerveControllerCommand2)
-                .andThen(() -> m_robotDrive.drive(0, 0, 0, false, false, true));
+                                // .andThen(swerveControllerCommand2)
+                                .andThen(() -> m_robotDrive.drive(0, 0, 0, false, false, true));
         }
- public Command getAutonomousCommand3() {
-    return new PathPlannerAuto("Auto 2");
-  }
+
+        public Command getAutonomousCommand3() {
+                return new PathPlannerAuto("Auto 2");
+        }
 
 }

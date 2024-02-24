@@ -23,10 +23,14 @@ public class FireTheThingThatStabsTheNote extends InstantCommand {
 
   }
 
+  private int lastPosition = 0;
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    end = m_shooter.getStabPosition() + RobotPrefs.getTheThingThatStabsTheNoteRot();
+    
+    end = lastPosition != 0 ? 0 : RobotPrefs.getTheThingThatStabsTheNoteRot();
+    lastPosition = end;
     m_shooter.setStabPosition(end);
     SmartDashboard.putNumber("Stab End", end);
   }

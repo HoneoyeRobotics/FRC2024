@@ -24,20 +24,22 @@ public class Arms extends SubsystemBase {
   private boolean PIDEnabled = true;
   private PIDController shoulderPIDContrller;
   private PIDController elbowPIDContrller;
-private DigitalInput ArmLimitSwitch = new DigitalInput(0);
+  private DigitalInput ArmLimitSwitch = new DigitalInput(0);
   private double shoulderMotorSetpoint = 0.0;
   private double elbowMotorSetpoint = 0.0;
+
+  private ArmPosition armPosition = ArmPosition.Home;
 
   public Arms() {
 
     shoulderMotor.getEncoder().setPosition(0.0);
     elbowMotor.getEncoder().setPosition(0.0);
-    
-    shoulderPIDContrller = new PIDController(RobotPrefs.getShoulderP(),RobotPrefs.getShoulderI(), RobotPrefs.getShoulderD());
+
+    shoulderPIDContrller = new PIDController(0.2,0,0);
     shoulderPIDContrller.setSetpoint(0.0);
     shoulderPIDContrller.setTolerance(0.5);
 
-    elbowPIDContrller = new PIDController(RobotPrefs.getElbowP(),RobotPrefs.getElbowI(), RobotPrefs.getElbowD());
+    elbowPIDContrller = new PIDController(0.1,0,0);
     elbowPIDContrller.setSetpoint(0.0);
     elbowPIDContrller.setTolerance(0.5);
 
@@ -49,14 +51,24 @@ private DigitalInput ArmLimitSwitch = new DigitalInput(0);
 
     // elbowMotor.setInverted(true);
   }
-public void setTolerance (double tolerance) {
-  elbowPIDContrller.setTolerance(tolerance);
- shoulderPIDContrller.setTolerance(tolerance);
-}
 
-public boolean getArmLimitSwitch (){
-  return ArmLimitSwitch.get();
-}
+  public void setArmPosition(ArmPosition armPosition) {
+    this.armPosition = armPosition;
+    SmartDashboard.putString("Arm Position", armPosition.toString());
+  }
+
+  public ArmPosition getArmPosition() {
+    return armPosition;
+  }
+
+  public void setTolerance(double tolerance) {
+    elbowPIDContrller.setTolerance(tolerance);
+    shoulderPIDContrller.setTolerance(tolerance);
+  }
+
+  public boolean getArmLimitSwitch() {
+    return ArmLimitSwitch.get();
+  }
 
   public void togglePID() {
     PIDEnabled = !PIDEnabled;
@@ -117,12 +129,10 @@ public boolean getArmLimitSwitch (){
   public void periodic() {
     // This method will be called once per scheduler run
 
-    
     SmartDashboard.putBoolean("PID Enabled", PIDEnabled);
 
     SmartDashboard.putBoolean("ElbowAtSetpoint", elbowPIDContrller.atSetpoint());
     SmartDashboard.putBoolean("ShoulderAtSetpoint", shoulderPIDContrller.atSetpoint());
-
 
     SmartDashboard.putNumber("ElbowTol", elbowPIDContrller.getPositionTolerance());
     SmartDashboard.putNumber("ShoulderTol", shoulderPIDContrller.getPositionTolerance());
@@ -136,48 +146,50 @@ public boolean getArmLimitSwitch (){
     SmartDashboard.putBoolean("Arm Limit Switch", getArmLimitSwitch());
     if (PIDEnabled) {
 
-
-      if(shoulderPIDContrller.getP() != RobotPrefs.getShoulderP())
+      if (shoulderPIDContrller.getP() != RobotPrefs.getShoulderP())
         shoulderPIDContrller.setP(RobotPrefs.getShoulderP());
 
-      if(shoulderPIDContrller.getI() != RobotPrefs.getShoulderI())
+      if (shoulderPIDContrller.getI() != RobotPrefs.getShoulderI())
         shoulderPIDContrller.setI(RobotPrefs.getShoulderI());
 
-      if(shoulderPIDContrller.getD() != RobotPrefs.getShoulderD())
+      if (shoulderPIDContrller.getD() != RobotPrefs.getShoulderD())
         shoulderPIDContrller.setD(RobotPrefs.getShoulderD());
-        
-      if(elbowPIDContrller.getP() != RobotPrefs.getElbowP())
+
+      if (elbowPIDContrller.getP() != RobotPrefs.getElbowP())
         elbowPIDContrller.setP(RobotPrefs.getElbowP());
 
-      if(elbowPIDContrller.getI() != RobotPrefs.getElbowI())
+      if (elbowPIDContrller.getI() != RobotPrefs.getElbowI())
         elbowPIDContrller.setI(RobotPrefs.getElbowI());
 
-      if(elbowPIDContrller.getD() != RobotPrefs.getElbowD())
+      if (elbowPIDContrller.getD() != RobotPrefs.getElbowD())
         elbowPIDContrller.setD(RobotPrefs.getElbowD());
-        
+
       double shoulderRotateSpeed = shoulderPIDContrller.calculate(getShoulderPosition(), shoulderMotorSetpoint);
       double elbowRotateSpeed = elbowPIDContrller.calculate(getElbowPosition(), elbowMotorSetpoint);
-      if (getArmLimitSwitch() && shoulderRotateSpeed < 0){
+      if (getArmLimitSwitch() && shoulderRotateSpeed < 0) {
         shoulderRotateSpeed = 0;
-        shoulderMotorSetpoint = 0; 
-        resetshoulderEncoder ();
-      } 
+        shoulderMotorSetpoint = 0;
+        resetshoulderEncoder();
+      }
 
       boolean Shoulderclose = Math.abs(shoulderMotorSetpoint - getShoulderPosition()) < 2;
       boolean Elbowclose = Math.abs(elbowMotorSetpoint - getElbowPosition()) < 2;
 
       if (shoulderRotateSpeed > 0 && Shoulderclose == false)
         shoulderRotateSpeed = 0.33;
-      if(shoulderRotateSpeed < 0 && Shoulderclose == false)
+      if (shoulderRotateSpeed < 0 && Shoulderclose == false)
         shoulderRotateSpeed = -0.33;
 
       if (elbowRotateSpeed > 0 && Elbowclose == false)
         elbowRotateSpeed = 0.22;
-      if(elbowRotateSpeed < 0 && Elbowclose == false)
+      if (elbowRotateSpeed < 0 && Elbowclose == false)
         elbowRotateSpeed = -0.22;
 
-        if(elbowRotateSpeed > 0 && elbowMotorSetpoint == 0 && getElbowPosition() > -4)
-          elbowRotateSpeed = 0;
+      if (elbowRotateSpeed > 0 && elbowMotorSetpoint == 0 && getElbowPosition() > -4)
+        elbowRotateSpeed = 0;
+
+      if(elbowRotateSpeed > 0 && elbowMotorSetpoint == -7 && getElbowPosition() > -13 && armPosition == ArmPosition.ToPickup)
+        elbowRotateSpeed = 0;
 
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);
@@ -187,7 +199,7 @@ public boolean getArmLimitSwitch (){
     } else {
       SmartDashboard.putNumber("shoulderSpeed", 0);
       SmartDashboard.putNumber("elbowSpeed", 0);
-       shoulderMotor.set(0);
+      shoulderMotor.set(0);
       elbowMotor.set(0);
     }
 
