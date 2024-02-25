@@ -22,13 +22,12 @@ public class PickupToSpeaker extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     this.m_arms = m_arms;
     addCommands(
-      
+
         new ToggleArmPosition(m_arms, ArmPosition.ToSpeaker),
-     // new MoveArmsToPosition(m_arms, 19,-7, RobotPrefs.getEndTolerance()),
-     new MoveArmsToPosition(m_arms, 15,-7, RobotPrefs.getMiddleTolerance()),
-     new MoveArmsToPosition(m_arms, 15,-12, RobotPrefs.getMiddleTolerance()),
-     new MoveArmsToPosition(m_arms, 17,-27, RobotPrefs.getEndTolerance()).withTimeout(1.5),
-     new ToggleArmPosition(m_arms, ArmPosition.Speaker)
-    );
+        // new MoveArmsToPosition(m_arms, 19,-7, RobotPrefs.getEndTolerance()),
+        new MoveArmsToPosition(m_arms, 15, -7, RobotPrefs.getMiddleTolerance()),
+        // new MoveArmsToPosition(m_arms, 15,-12, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 0, -14, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+        new ToggleArmPosition(m_arms, ArmPosition.Speaker));
   }
 }

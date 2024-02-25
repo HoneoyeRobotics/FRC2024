@@ -23,6 +23,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.ArmPosition;
 import frc.robot.subsystems.Arms;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -51,6 +52,7 @@ public class RobotContainer {
         private final DriveSubsystem m_robotDrive = new DriveSubsystem();
         private final Shooter m_shooter = new Shooter();
         public final Arms m_arms = new Arms();
+        public final Climber m_climber = new Climber();
 
         public void teleopInit() {
                 // m_arms.resetLowerElbowEncoder();
@@ -96,8 +98,9 @@ public class RobotContainer {
                                                                 true, true,
                                                                 m_driverController.leftBumper().getAsBoolean()),
                                                 m_robotDrive));
-                SmartDashboard.putData("Reset Shoulder Encoder", new ResetLowerElbowEncoder(m_arms));
-                SmartDashboard.putData("Reset Elbow Encoder", new ResetUpperElbowEncoder(m_arms));
+                SmartDashboard.putData("Reset Shoulder Encoder",
+                                new ResetLowerElbowEncoder(m_arms).ignoringDisable(true));
+                SmartDashboard.putData("Reset Elbow Encoder", new ResetUpperElbowEncoder(m_arms).ignoringDisable(true));
 
                 SmartDashboard.putData("Pickup Shoulder", new SetShoulder(m_arms, 20));
                 SmartDashboard.putData("Pickup Elbow", new SetElbow(m_arms, -7));
@@ -108,9 +111,10 @@ public class RobotContainer {
                 SmartDashboard.putData("Speaker Shoulder", new SetShoulder(m_arms, -23));
                 SmartDashboard.putData("Speaker Elbow", new SetElbow(m_arms, 10));
 
-                SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive));
+                SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
 
-                SmartDashboard.putData("StabTheNote", new FireTheThingThatStabsTheNote(m_shooter));
+                // SmartDashboard.putData("StabTheNote", new
+                // FireTheThingThatStabsTheNote(m_shooter));
                 // SmartDashboard.putData(m_arms);
 
         }
@@ -133,9 +137,9 @@ public class RobotContainer {
 
                 m_driverController.b().whileTrue(new RunShooter(m_shooter, -0.5));
                 m_driverController.y().whileTrue(new RunShooter(m_shooter, 0.5));
-                buttonBoard.axisLessThan(0,-0.2).onTrue(new MoveShoulder(m_arms, 1));
+                buttonBoard.axisLessThan(0, -0.2).onTrue(new MoveShoulder(m_arms, 1));
                 buttonBoard.axisGreaterThan(0, 0.2).onTrue(new MoveShoulder(m_arms, -1));
-                buttonBoard.axisLessThan(1,-0.2).onTrue(new MoveElbow(m_arms, -1));
+                buttonBoard.axisLessThan(1, -0.2).onTrue(new MoveElbow(m_arms, -1));
                 buttonBoard.axisGreaterThan(1, 0.2).onTrue(new MoveElbow(m_arms, 1));
                 buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
                 // shoot top
@@ -150,9 +154,13 @@ public class RobotContainer {
                 buttonBoard.button(6).onTrue(new ArmSpeaker(m_arms));
                 buttonBoard.button(7).onTrue(new ArmFeeder(m_arms));
                 buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
-               
-                
-                
+
+                m_driverController.back().onTrue(new RetractClimber(m_climber, true));
+                m_driverController.start().onTrue(new DeployClimber(m_climber));
+                m_driverController.axisGreaterThan(5, 0.2).whileTrue(new RunRightClimber(m_climber, 0.1));
+                m_driverController.axisLessThan(5, -0.2).whileTrue(new RunRightClimber(m_climber, -0.1));
+                m_driverController.axisGreaterThan(4, 0.2).whileTrue(new RunLeftClimber(m_climber, 0.1));
+                m_driverController.axisLessThan(4, -0.2).whileTrue(new RunLeftClimber(m_climber, -0.1));
         }
 
         /**

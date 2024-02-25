@@ -16,11 +16,13 @@ import frc.robot.subsystems.Shooter;
 public class FireTheThingThatStabsTheNote extends InstantCommand {
   private static Shooter m_shooter;
   private int end = 0;
+  private boolean stopImmediate = false;
 
-  public FireTheThingThatStabsTheNote(Shooter shooter) {
+  public FireTheThingThatStabsTheNote(Shooter shooter, int end, boolean stopImmediate) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
-
+    this.end = end;
+    this.stopImmediate = stopImmediate;
   }
 
   private int lastPosition = 0;
@@ -28,11 +30,12 @@ public class FireTheThingThatStabsTheNote extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
-    end = lastPosition != 0 ? 0 : RobotPrefs.getTheThingThatStabsTheNoteRot();
-    lastPosition = end;
+
+    // end = m_shooter.getStabPosition()+
+    // RobotPrefs.getTheThingThatStabsTheNoteRot();
+
     m_shooter.setStabPosition(end);
-    SmartDashboard.putNumber("Stab End", end);
+    // SmartDashboard.putNumber("Stab End", end);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,6 +52,9 @@ public class FireTheThingThatStabsTheNote extends InstantCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    if (stopImmediate == true)
+      return true;
+    else
+      return m_shooter.atStabPosition();
   }
 }

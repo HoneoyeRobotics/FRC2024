@@ -135,7 +135,10 @@ public class Shooter extends SubsystemBase {
   }
 
   public boolean atStabPosition() {
-    return stabPidController.atSetpoint();
+    boolean atset = stabPidController.atSetpoint();
+    // if(atset && stabPidController.getSetpoint() != 0)
+    //   stabPidController.setSetpoint(0);
+    return atset;
   }
 
   @Override

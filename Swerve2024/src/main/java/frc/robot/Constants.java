@@ -24,8 +24,14 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+  }
+
+  public static class ClimberConstants {
+    public static final int LeftClimber =  19;
+    public static final int RightClimber = 25;
   }
 
   public static class ShooterConstants {

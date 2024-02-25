@@ -23,11 +23,11 @@ public class HomeToSpeaker extends SequentialCommandGroup {
     this.m_arms = m_arms;
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToSpeaker),
-      new MoveArmsToPosition(m_arms, 0,-12, RobotPrefs.getMiddleTolerance()),
+  //    new MoveArmsToPosition(m_arms, 0,-12, RobotPrefs.getMiddleTolerance()),
      // new MoveArmsToPosition(m_arms, 3,-7, RobotPrefs.getMiddleTolerance()),
      // new MoveArmsToPosition(m_arms, 6,-12, RobotPrefs.getMiddleTolerance()),
      // new MoveArmsToPosition(m_arms, 11,-18, RobotPrefs.getMiddleTolerance()),
-      new MoveArmsToPosition(m_arms, 17,-27, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+      new MoveArmsToPosition(m_arms, 0,-15.5  , RobotPrefs.getEndTolerance()),
       new ToggleArmPosition(m_arms, ArmPosition.Speaker)
     
     );

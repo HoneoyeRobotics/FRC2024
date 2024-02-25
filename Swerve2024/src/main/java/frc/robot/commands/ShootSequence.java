@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.RobotPrefs;
 import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -25,7 +26,8 @@ public class ShootSequence extends ParallelCommandGroup {
     //after y seconds, fire the relay. this allows the shooter to get up to speed before we fire.
       new SequentialCommandGroup(
           new WaitCommand(shooterWait),
-          new FireTheThingThatStabsTheNote(shooter)
+          new FireTheThingThatStabsTheNote(shooter, RobotPrefs.getTheThingThatStabsTheNoteRot() * -1, false),
+          new FireTheThingThatStabsTheNote(shooter, 0, true)
       )
     );
   }
