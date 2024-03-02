@@ -5,6 +5,7 @@
 package frc.robot.commands.ArmMovement;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.ArmPositions;
 import frc.robot.RobotPrefs;
 import frc.robot.commands.MoveArmsToPosition;
 import frc.robot.subsystems.ArmPosition;
@@ -28,7 +29,7 @@ public class HomeToPickUp extends SequentialCommandGroup {
     new MoveArmsToPosition(m_arms, 6, -7, RobotPrefs.getMiddleTolerance()),
     new MoveArmsToPosition(m_arms, 12, -7, RobotPrefs.getMiddleTolerance()),
     new MoveArmsToPosition(m_arms, 18, -7, RobotPrefs.getMiddleTolerance()),
-    new MoveArmsToPosition(m_arms, 19, -7, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+    new MoveArmsToPosition(m_arms, ArmPositions.PickupS , ArmPositions.PickupE, RobotPrefs.getEndTolerance()).withTimeout(1.5),
     new ToggleArmPosition(m_arms, ArmPosition.Pickup)
     );
   }

@@ -102,14 +102,19 @@ public class RobotContainer {
                                 new ResetLowerElbowEncoder(m_arms).ignoringDisable(true));
                 SmartDashboard.putData("Reset Elbow Encoder", new ResetUpperElbowEncoder(m_arms).ignoringDisable(true));
 
-                SmartDashboard.putData("Pickup Shoulder", new SetShoulder(m_arms, 20));
-                SmartDashboard.putData("Pickup Elbow", new SetElbow(m_arms, -7));
+                // SmartDashboard.putData("Pickup Shoulder", new SetShoulder(m_arms, 20));
+                // SmartDashboard.putData("Pickup Elbow", new SetElbow(m_arms, -7));
 
-                SmartDashboard.putData("Amp Shoulder", new SetShoulder(m_arms, 27));
-                SmartDashboard.putData("Amp Elbow", new SetElbow(m_arms, -32));
+                // SmartDashboard.putData("Amp Shoulder", new SetShoulder(m_arms, 27));
+                // SmartDashboard.putData("Amp Elbow", new SetElbow(m_arms, -32));
 
-                SmartDashboard.putData("Speaker Shoulder", new SetShoulder(m_arms, -23));
-                SmartDashboard.putData("Speaker Elbow", new SetElbow(m_arms, 10));
+                // SmartDashboard.putData("Speaker Shoulder", new SetShoulder(m_arms, -23));
+                // SmartDashboard.putData("Speaker Elbow", new SetElbow(m_arms, 10));
+
+                SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
+                SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber, false));
+                SmartDashboard.putData("Reset Climber Enc", new ResetClimberEncoders(m_climber));
+                SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber, true));
 
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
 
@@ -143,10 +148,9 @@ public class RobotContainer {
                 buttonBoard.axisGreaterThan(1, 0.2).onTrue(new MoveElbow(m_arms, 1));
                 buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
                 // shoot top
-                buttonBoard.button(5).onTrue(new ShootSequence(m_shooter, 0.5,
-                                1.5, 1));
+                buttonBoard.button(5).onTrue(new ShootSpeaker(m_shooter));
                 // shoot amp
-                buttonBoard.button(4).onTrue(new ShootSequence(m_shooter, 0.5, 1, 0.25));
+                buttonBoard.button(4).onTrue(new ShootAmp(m_shooter));
 
                 buttonBoard.button(11).onTrue(new ArmHome(m_arms));
                 buttonBoard.button(3).onTrue(new ArmPickup(m_arms));
@@ -168,7 +172,7 @@ public class RobotContainer {
          *
          * @return the command to run in autonomous
          */
-        public Command getAutonomousCommand() {
+        public Command getAutonomousCommandOld() {
                 // Create config for trajectory
                 TrajectoryConfig config = new TrajectoryConfig(
                                 AutoConstants.kMaxSpeedMetersPerSecond,
@@ -238,7 +242,7 @@ public class RobotContainer {
                                 .andThen(() -> m_robotDrive.drive(0, 0, 0, false, false, true));
         }
 
-        public Command getAutonomousCommand3() {
+        public Command getAutonomousCommand() {
                 return new PathPlannerAuto("Auto 2");
         }
 

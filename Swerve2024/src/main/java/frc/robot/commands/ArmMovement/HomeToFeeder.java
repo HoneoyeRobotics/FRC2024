@@ -5,6 +5,7 @@
 package frc.robot.commands.ArmMovement;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.ArmPositions;
 import frc.robot.RobotPrefs;
 import frc.robot.commands.MoveArmsToPosition;
 import frc.robot.subsystems.ArmPosition;
@@ -27,7 +28,7 @@ public class HomeToFeeder extends SequentialCommandGroup {
       new MoveArmsToPosition(m_arms, 2,-6, RobotPrefs.getMiddleTolerance()),
       new MoveArmsToPosition(m_arms, 8,-15, RobotPrefs.getMiddleTolerance()),
       new MoveArmsToPosition(m_arms, 14,-22, RobotPrefs.getMiddleTolerance()),
-      new MoveArmsToPosition(m_arms, 21,-26, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+      new MoveArmsToPosition(m_arms,  ArmPositions.FeederS , ArmPositions.FeederE, RobotPrefs.getEndTolerance()).withTimeout(1.5),
       new ToggleArmPosition(m_arms, ArmPosition.Feeder)
     
     );

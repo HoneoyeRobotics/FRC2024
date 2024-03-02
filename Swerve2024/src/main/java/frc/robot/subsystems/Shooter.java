@@ -35,7 +35,7 @@ public class Shooter extends SubsystemBase {
     StabPosition = new Encoder(Constants.ShooterConstants.NoteSensorAInput,
         Constants.ShooterConstants.NoteSensorBInput);
     StabPosition.reset();
-    stabPidController = new PIDController(0.05, 0, 0);
+    stabPidController = new PIDController(0.04, 0, 0.001);
     stabPidController.setTolerance(1);
     stabPidController.setSetpoint(0);
 
@@ -116,14 +116,14 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Stab Position", getStabPosition());
     SmartDashboard.putNumber("Stab Setpoint", stabPidController.getSetpoint());
 
-    if (stabPidController.getP() != RobotPrefs.getStabP())
-      stabPidController.setP(RobotPrefs.getStabP());
+    // if (stabPidController.getP() != RobotPrefs.getStabP())
+    //   stabPidController.setP(RobotPrefs.getStabP());
 
-    if (stabPidController.getI() != RobotPrefs.getStabI())
-      stabPidController.setI(RobotPrefs.getStabI());
+    // if (stabPidController.getI() != RobotPrefs.getStabI())
+    //   stabPidController.setI(RobotPrefs.getStabI());
 
-    if (stabPidController.getD() != RobotPrefs.getStabD())
-      stabPidController.setD(RobotPrefs.getStabD());
+    // if (stabPidController.getD() != RobotPrefs.getStabD())
+    //   stabPidController.setD(RobotPrefs.getStabD());
     if (stabenabled == true) {
       double stabbyspeed = stabPidController.calculate(getStabPosition());
       RunTheThingThatStabsTheNote(stabbyspeed);

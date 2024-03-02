@@ -5,6 +5,7 @@
 package frc.robot.commands.ArmMovement;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.ArmPositions;
 import frc.robot.RobotPrefs;
 import frc.robot.commands.MoveArmsToPosition;
 import frc.robot.subsystems.ArmPosition;
@@ -29,7 +30,7 @@ public class HomeToAmp extends SequentialCommandGroup {
         // new MoveArmsToPosition(m_arms, 6,-12, RobotPrefs.getMiddleTolerance()),
         new MoveArmsToPosition(m_arms, 12, -18, RobotPrefs.getMiddleTolerance()),
         new MoveArmsToPosition(m_arms, 20, -28, RobotPrefs.getMiddleTolerance()),
-        new MoveArmsToPosition(m_arms, 26, -32, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+        new MoveArmsToPosition(m_arms, ArmPositions.AmpS , ArmPositions.AmpE, RobotPrefs.getEndTolerance()).withTimeout(1.5),
         new ToggleArmPosition(m_arms, ArmPosition.Amp)
 
     );

@@ -25,6 +25,23 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
   
+  public static class ArmPositions{
+
+    public static final double PickupS = 20;
+    public static final double PickupE = -7;
+    public static final double SpeakerS = 0;
+    public static final double SpeakerE = -13.5;
+    public static final double AmpS = 26;
+    public static final double AmpE = -32;
+    public static final double FeederS = 21;
+    public static final double FeederE = -26;
+    public static final double ClimberS = 0;
+    public static final double ClimberE = 0;
+
+  }
+
+
+
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
