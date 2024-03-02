@@ -28,8 +28,8 @@ public class DeployClimber extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climber.setLeftClimber(climber.getLeftClimberPosition() >= LeftSetpoint ? 0 : 0.1);
-    climber.setRightClimber(climber.getRightClimberPosition() <= RightSetpoint ? 0 : -0.1);
+    climber.setLeftClimber(climber.getLeftClimberPosition() >= LeftSetpoint ? 0 : 0.25);
+    climber.setRightClimber(climber.getRightClimberPosition() <= RightSetpoint ? 0 : -0.25);
 
   }
 

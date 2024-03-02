@@ -160,7 +160,7 @@ public class RobotContainer {
                 buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
 
                 m_driverController.back().onTrue(new RetractClimber(m_climber, true));
-                m_driverController.start().onTrue(new DeployClimber(m_climber));
+                m_driverController.start().onTrue(new DoTheClimb(m_climber, m_arms));
                 m_driverController.axisGreaterThan(5, 0.2).whileTrue(new RunRightClimber(m_climber, 0.1));
                 m_driverController.axisLessThan(5, -0.2).whileTrue(new RunRightClimber(m_climber, -0.1));
                 m_driverController.axisGreaterThan(4, 0.2).whileTrue(new RunLeftClimber(m_climber, 0.1));

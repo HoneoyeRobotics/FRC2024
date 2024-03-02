@@ -13,11 +13,11 @@ import frc.robot.commands.ArmMovement.*;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ArmSpeaker extends InstantCommand {
+public class ArmClimber extends InstantCommand {
   /** Creates a new ArmHome. */
   private Arms arms;
 
-  public ArmSpeaker(Arms arms) {
+  public ArmClimber(Arms arms) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     this.arms = arms;
@@ -27,9 +27,10 @@ public class ArmSpeaker extends InstantCommand {
   public void initialize() {
     switch (arms.getArmPosition()) {
       case Home:
-        new HomeToSpeaker(arms).schedule();
+        new HomeToClimber(arms).schedule();
         break;
       case Speaker:
+        new SpeakerToHome(arms).schedule();
         break;
       case Feeder:
         new FeederToHome(arms).schedule();
@@ -40,9 +41,8 @@ public class ArmSpeaker extends InstantCommand {
       case Amp:
         new AmpToHome(arms).schedule();
         break;
-        case Climber:
-          new ClimberToHome(arms).schedule();
-          break;
+      case Climber:
+        break;
     }
   }
 }

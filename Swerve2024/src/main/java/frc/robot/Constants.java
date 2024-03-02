@@ -33,10 +33,10 @@ public final class Constants {
     public static final double SpeakerE = -13.5;
     public static final double AmpS = 26;
     public static final double AmpE = -32;
-    public static final double FeederS = 21;
-    public static final double FeederE = -26;
+    public static final double FeederS = 19;
+    public static final double FeederE = -28;
     public static final double ClimberS = 0;
-    public static final double ClimberE = 0;
+    public static final double ClimberE = -17;
 
   }
 

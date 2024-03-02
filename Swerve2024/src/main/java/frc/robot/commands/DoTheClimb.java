@@ -4,17 +4,23 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.ArmMovement.HomeToClimber;
+import frc.robot.subsystems.Arms;
+import frc.robot.subsystems.Climber;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ShootSpeaker extends SequentialCommandGroup {
-  /** Creates a new ShootAmp. */
-  public ShootSpeaker(Shooter shooter) {
+public class DoTheClimb extends ParallelCommandGroup {
+  /** Creates a new PepareClimb. */
+  public DoTheClimb(Climber climber, Arms arms) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ShootSequence(shooter, 0.75,1.5, 1));
+    addCommands(
+
+    new DeployClimber(climber),
+    new HomeToClimber(arms)
+    );
   }
 }

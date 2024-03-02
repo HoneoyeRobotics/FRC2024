@@ -67,7 +67,12 @@ public class DriveSubsystem extends SubsystemBase {
   private double m_prevTime = WPIUtilJNI.now() * 1e-6;
 
   // Odometry class for tracking robot pose
-  SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
+  SwerveDriveOdometry m_odometry;
+
+  /** Creates a new DriveSubsystem. */
+  public DriveSubsystem() {
+     m_gyro.reset();
+     m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
       Rotation2d.fromDegrees(getGyroAngle()),
       new SwerveModulePosition[] {
@@ -76,10 +81,6 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearLeft.getPosition(),
           m_rearRight.getPosition()
       });
-
-  /** Creates a new DriveSubsystem. */
-  public DriveSubsystem() {
-    m_gyro.reset();
 
     driveCamera = CameraServer.startAutomaticCapture("drive", 0);
 
@@ -109,7 +110,7 @@ public class DriveSubsystem extends SubsystemBase {
           return false;
         },
         this // Reference to this subsystem to set requirements
-    ); 
+    );
   }
 
   public void driveSpeeds(ChassisSpeeds speeds) {
@@ -309,7 +310,9 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the robot's heading in degrees, from -180 to 180
    */
   public double getHeading() {
-    return Rotation2d.fromDegrees(getGyroAngle()).getDegrees();
+    double heading = Rotation2d.fromDegrees(getGyroAngle()).getDegrees();
+    SmartDashboard.putNumber("Heading", heading);
+    return heading;
   }
 
   /**

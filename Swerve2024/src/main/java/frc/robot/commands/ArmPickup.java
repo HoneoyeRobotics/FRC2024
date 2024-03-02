@@ -41,6 +41,9 @@ public class ArmPickup extends InstantCommand {
       case Amp:
         new AmpToPickUp(arms).schedule();
         break;
+        case Climber:
+          new ClimberToHome(arms).schedule();
+          break;
     }
   }
 }

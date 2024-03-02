@@ -40,6 +40,9 @@ public class ArmFeeder extends InstantCommand {
       case Amp:
         new AmpToHome(arms).schedule();
         break;
+      case Climber:
+        new ClimberToHome(arms).schedule();
+        break;
     }
   }
 }

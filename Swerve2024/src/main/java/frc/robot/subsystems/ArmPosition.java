@@ -25,6 +25,8 @@ public enum ArmPosition {
   Feeder,
   ToFeeder,
   Speaker,
-  ToSpeaker
+  ToSpeaker,
+  Climber, 
+  ToClimber
 
 }

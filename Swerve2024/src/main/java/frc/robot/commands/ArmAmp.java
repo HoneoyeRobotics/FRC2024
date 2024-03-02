@@ -41,6 +41,8 @@ public class ArmAmp extends InstantCommand {
         break;
       case Amp:
         break;
+        case Climber:
+        break;
     }
   }
 }

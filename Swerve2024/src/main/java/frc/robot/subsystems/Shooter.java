@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -38,7 +39,8 @@ public class Shooter extends SubsystemBase {
     stabPidController = new PIDController(0.04, 0, 0.001);
     stabPidController.setTolerance(1);
     stabPidController.setSetpoint(0);
-
+    topmotor.setIdleMode(IdleMode.kBrake);
+    bottommotor.setIdleMode(IdleMode.kBrake);
   }
 
   public PIDController stabPidController;
@@ -112,18 +114,18 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Sensor", noteSensor.getValue());
-    SmartDashboard.putNumber("Stab Position", getStabPosition());
-    SmartDashboard.putNumber("Stab Setpoint", stabPidController.getSetpoint());
+    // SmartDashboard.putNumber("Sensor", noteSensor.getValue());
+    // SmartDashboard.putNumber("Stab Position", getStabPosition());
+    // SmartDashboard.putNumber("Stab Setpoint", stabPidController.getSetpoint());
 
     // if (stabPidController.getP() != RobotPrefs.getStabP())
-    //   stabPidController.setP(RobotPrefs.getStabP());
+    // stabPidController.setP(RobotPrefs.getStabP());
 
     // if (stabPidController.getI() != RobotPrefs.getStabI())
-    //   stabPidController.setI(RobotPrefs.getStabI());
+    // stabPidController.setI(RobotPrefs.getStabI());
 
     // if (stabPidController.getD() != RobotPrefs.getStabD())
-    //   stabPidController.setD(RobotPrefs.getStabD());
+    // stabPidController.setD(RobotPrefs.getStabD());
     if (stabenabled == true) {
       double stabbyspeed = stabPidController.calculate(getStabPosition());
       RunTheThingThatStabsTheNote(stabbyspeed);
@@ -137,7 +139,7 @@ public class Shooter extends SubsystemBase {
   public boolean atStabPosition() {
     boolean atset = stabPidController.atSetpoint();
     // if(atset && stabPidController.getSetpoint() != 0)
-    //   stabPidController.setSetpoint(0);
+    // stabPidController.setSetpoint(0);
     return atset;
   }
 
