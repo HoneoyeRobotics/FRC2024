@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -55,7 +56,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   // private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
-  private final AHRS m_gyro = new AHRS(SerialPort.Port.kUSB);
+ // private final AHRS m_gyro = new AHRS(SerialPort.Port.kUSB);
+ private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
   private double m_currentTranslationDir = 0.0;
@@ -84,6 +86,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     driveCamera = CameraServer.startAutomaticCapture("drive", 0);
 
+
     // Configure AutoBuilder last
     AutoBuilder.configureHolonomic(
         this::getPose, // Robot pose supplier
@@ -91,10 +94,11 @@ public class DriveSubsystem extends SubsystemBase {
         this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
         this::driveSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
         new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-            new PIDConstants(2.0, 0.0, 0.0), // Translation PID constants
-            new PIDConstants(1.0, 0.0, 0.0), // Rotation PID constants
-            0.5, // Max module speed, in m/s
-            Units.inchesToMeters(26 / 2), // Drive base radius in meters. Distance from robot center to furthest module.
+            new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
+            new PIDConstants(5, 0.0, 0.0), // Rotation PID constants
+            3, // Max module speed, in m/s
+            Math.sqrt(((Constants.DriveConstants.kWheelBase / 2) * (Constants.DriveConstants.kWheelBase / 2)) * 2),
+            //Units.inchesToMeters(26 / 2), // Drive base radius in meters. Distance from robot center to furthest module.
             new ReplanningConfig() // Default path replanning config. See the API for the options here
         ),
         () -> {
@@ -141,7 +145,7 @@ public class DriveSubsystem extends SubsystemBase {
     // if(angle > 180)
     // angle = -180 + (angle - 180);
     // return angle;
-    return Math.IEEEremainder(-m_gyro.getAngle(), 360.0d);
+    return Math.IEEEremainder(m_gyro.getAngle(), 360.0d);
 
   }
 

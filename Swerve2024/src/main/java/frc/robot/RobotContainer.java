@@ -35,6 +35,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.util.Named;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import frc.robot.commands.*;
@@ -74,6 +76,11 @@ public class RobotContainer {
         public RobotContainer() {
                 // Configure the button bindings
                 configureButtonBindings();
+                NamedCommands.registerCommand("ShootSpeaker", new ShootSpeaker(m_shooter));
+                NamedCommands.registerCommand("ArmSpeaker", new ArmSpeaker(m_arms));
+                NamedCommands.registerCommand("ArmHome", new ArmHome(m_arms));
+                NamedCommands.registerCommand("ArmPickup", new ArmPickup(m_arms));
+                NamedCommands.registerCommand("RunPickup", new RunShooter(m_shooter, -0.5));
                 // m_shooter.setDefaultCommand(new IndependentShooter(m_shooter,
                 // () -> m_codriverController.getRightY(),
                 // () -> m_codriverController.getLeftY() / 1.4,
