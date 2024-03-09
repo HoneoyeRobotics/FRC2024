@@ -1,0 +1,58 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.168752445612999,
+        "y": 5.63002423302144
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.3613191550707424,
+        "y": 5.019873823531431
+      },
+      "isLocked": false,
+      "linkedName": "SPIIINNNN 2 END"
+    },
+    {
+      "anchor": {
+        "x": 3.028509840803465,
+        "y": 5.99056765681099
+      },
+      "prevControl": {
+        "x": 3.1856697947630126,
+        "y": 5.879631218721897
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "SPIN2STARS"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 101.09372301155793,
+      "rotateFast": true
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 1.5,
+    "maxAcceleration": 1.5,
+    "maxAngularVelocity": 180.0,
+    "maxAngularAcceleration": 180.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -171.63411387596744,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "SPINNNNNNNNN",
+  "previewStartingState": {
+    "rotation": 0.0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}
