@@ -15,6 +15,6 @@ public class ShootAmp extends SequentialCommandGroup {
   public ShootAmp(Shooter shooter) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ShootSequence(shooter, 0.5, 1, 0.25));
+    addCommands(new ShootSequence(shooter, 0.5, 1.2, 0.25));
   }
 }

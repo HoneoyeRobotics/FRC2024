@@ -2,8 +2,8 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7,
-      "y": 6.73
+      "x": 0.82,
+      "y": 6.82
     },
     "rotation": -120.0
   },
@@ -20,7 +20,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.5
+            "waitTime": 1.0
           }
         },
         {
@@ -34,27 +34,34 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "ArmPickup"
-                }
-              },
-              {
                 "type": "path",
                 "data": {
                   "pathName": "Auto 4-1"
                 }
               },
               {
-                "type": "wait",
+                "type": "sequential",
                 "data": {
-                  "waitTime": 0.5
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "RunPickup"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "ArmPickup"
+                      }
+                    },
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 1.0
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "RunPickup"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -75,13 +82,14 @@
                 "data": {
                   "name": "ArmSpeaker"
                 }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.0
-                }
-              },
+              }
+            ]
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
               {
                 "type": "named",
                 "data": {

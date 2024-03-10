@@ -19,8 +19,8 @@ public class RetractClimber extends Command {
     this.climber = climber;
     addRequirements(climber);
     this.Hold = Hold;
-    LeftClimbPID = new PIDController(0.28, 0, 0);
-    RightClimbPID = new PIDController(0.45, 0, 0);
+    LeftClimbPID = new PIDController(0.2, 0, 0);
+    RightClimbPID = new PIDController(0.2, 0, 0);
     LeftClimbPID.setTolerance(2);
     RightClimbPID.setTolerance(2);
   }
@@ -28,8 +28,8 @@ public class RetractClimber extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    LeftClimbPID.setSetpoint(0);
-    RightClimbPID.setSetpoint(0);
+    LeftClimbPID.setSetpoint(-3);
+    RightClimbPID.setSetpoint(3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

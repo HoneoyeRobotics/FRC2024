@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.84,
-      "y": 4.27
+      "x": 0.7543128599770712,
+      "y": 6.683920394867817
     },
-    "rotation": 120.0
+    "rotation": -120.0
   },
   "command": {
     "type": "sequential",
@@ -30,13 +30,26 @@
           }
         },
         {
-          "type": "race",
+          "type": "parallel",
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "parallel",
                 "data": {
-                  "pathName": "Auto 5-1"
+                  "commands": [
+                    {
+                      "type": "path",
+                      "data": {
+                        "pathName": "Auto C-1"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "ArmPickup"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -44,21 +57,28 @@
                 "data": {
                   "commands": [
                     {
-                      "type": "named",
-                      "data": {
-                        "name": "ArmPickup"
-                      }
-                    },
-                    {
                       "type": "wait",
                       "data": {
-                        "waitTime": 1.0
+                        "waitTime": 1.75
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "race",
                       "data": {
-                        "name": "RunPickup"
+                        "commands": [
+                          {
+                            "type": "wait",
+                            "data": {
+                              "waitTime": 1.0
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "RunPickup"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
@@ -74,29 +94,28 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Auto 5-2"
+                  "pathName": "Auto C-2"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "ArmSpeaker"
+                  "name": "ArmAmp"
                 }
               }
             ]
           }
         },
         {
-          "type": "sequential",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "ShootSpeaker"
-                }
-              }
-            ]
+            "name": "ShootAmp"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         }
       ]

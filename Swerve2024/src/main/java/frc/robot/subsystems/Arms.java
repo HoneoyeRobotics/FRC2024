@@ -132,7 +132,7 @@ public class Arms extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
 
-    SmartDashboard.putBoolean("PID Enabled", PIDEnabled);
+  //  SmartDashboard.putBoolean("PID Enabled", PIDEnabled);
 
     SmartDashboard.putBoolean("ElbowAtSetpoint", elbowPIDContrller.atSetpoint());
     SmartDashboard.putBoolean("ShoulderAtSetpoint", shoulderPIDContrller.atSetpoint());
@@ -199,7 +199,7 @@ public class Arms extends SubsystemBase {
           shoulderMotorSetpoint == ArmPositions.PickupS &&
           getElbowPosition() < -5){       
             elbowRotateSpeed = 0;
-            System.out.println("Cut elbow power.");
+           // System.out.println("Cut elbow power.");
           }
 
       if (shoulderRotateSpeed > 0 &&
@@ -209,16 +209,16 @@ public class Arms extends SubsystemBase {
           getShoulderPosition() > 17)   
           {       
             shoulderRotateSpeed = 0;
-            System.out.println("Cut shoulder power.");
+           // System.out.println("Cut shoulder power.");
           }
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);
-      SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
-      SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
+      // SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
+      // SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
 
     } else {
-      SmartDashboard.putNumber("shoulderSpeed", 0);
-      SmartDashboard.putNumber("elbowSpeed", 0);
+      // SmartDashboard.putNumber("shoulderSpeed", 0);
+      // SmartDashboard.putNumber("elbowSpeed", 0);
       shoulderMotor.set(0);
       elbowMotor.set(0);
     }

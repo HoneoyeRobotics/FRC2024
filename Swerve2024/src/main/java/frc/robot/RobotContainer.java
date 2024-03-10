@@ -17,6 +17,7 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
@@ -55,7 +56,7 @@ public class RobotContainer {
         private final Shooter m_shooter = new Shooter();
         public final Arms m_arms = new Arms();
         public final Climber m_climber = new Climber();
-
+private SendableChooser<Command> auto = new SendableChooser<>();
         public void teleopInit() {
                 // m_arms.resetLowerElbowEncoder();
 
@@ -76,16 +77,14 @@ public class RobotContainer {
         public RobotContainer() {
                 // Configure the button bindings
                 configureButtonBindings();
+                NamedCommands.registerCommand("ArmAmp", new ArmAmp(m_arms));
+                NamedCommands.registerCommand("ShootAmp", new ShootAmp(m_shooter));
                 NamedCommands.registerCommand("ShootSpeaker", new ShootSpeaker(m_shooter));
                 NamedCommands.registerCommand("ArmSpeaker", new ArmSpeaker(m_arms));
                 NamedCommands.registerCommand("ArmHome", new ArmHome(m_arms));
                 NamedCommands.registerCommand("ArmPickup", new ArmPickup(m_arms));
                 NamedCommands.registerCommand("RunPickup", new RunShooter(m_shooter, -0.5));
-                // m_shooter.setDefaultCommand(new IndependentShooter(m_shooter,
-                // () -> m_codriverController.getRightY(),
-                // () -> m_codriverController.getLeftY() / 1.4,
-                // () -> m_codriverController.b().getAsBoolean()));
-                // Configure default commands
+              
                 m_robotDrive.setDefaultCommand(
                                 // The left stick controls translation of the robot.
                                 // Turning is controlled by the X axis of the right stick.
@@ -109,14 +108,6 @@ public class RobotContainer {
                                 new ResetLowerElbowEncoder(m_arms).ignoringDisable(true));
                 SmartDashboard.putData("Reset Elbow Encoder", new ResetUpperElbowEncoder(m_arms).ignoringDisable(true));
 
-                // SmartDashboard.putData("Pickup Shoulder", new SetShoulder(m_arms, 20));
-                // SmartDashboard.putData("Pickup Elbow", new SetElbow(m_arms, -7));
-
-                // SmartDashboard.putData("Amp Shoulder", new SetShoulder(m_arms, 27));
-                // SmartDashboard.putData("Amp Elbow", new SetElbow(m_arms, -32));
-
-                // SmartDashboard.putData("Speaker Shoulder", new SetShoulder(m_arms, -23));
-                // SmartDashboard.putData("Speaker Elbow", new SetElbow(m_arms, 10));
 
                 SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
                 SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber, false));
@@ -124,10 +115,16 @@ public class RobotContainer {
                 SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber, true));
 
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
-
-                // SmartDashboard.putData("StabTheNote", new
-                // FireTheThingThatStabsTheNote(m_shooter));
-                // SmartDashboard.putData(m_arms);
+                auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
+                auto.setDefaultOption("auto 2", new PathPlannerAuto("Auto 2"));
+                auto.addOption("auto 3", new PathPlannerAuto("Auto 3"));
+                auto.addOption("auto 4", new PathPlannerAuto("Auto 4"));
+                auto.addOption("auto 5", new PathPlannerAuto("Auto 5"));
+                auto.addOption("auto 6", new PathPlannerAuto("Auto 6"));
+                auto.addOption("auto 7", new PathPlannerAuto("Auto 7"));
+                auto.addOption("Auto 8", new PathPlannerAuto("Auto 8"));
+                auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
+                SmartDashboard.putData("Auto Mode", auto);
 
         }
 
@@ -153,104 +150,29 @@ public class RobotContainer {
                 buttonBoard.axisGreaterThan(0, 0.2).onTrue(new MoveShoulder(m_arms, -1));
                 buttonBoard.axisLessThan(1, -0.2).onTrue(new MoveElbow(m_arms, -1));
                 buttonBoard.axisGreaterThan(1, 0.2).onTrue(new MoveElbow(m_arms, 1));
-                buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
+                //buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
                 // shoot top
-                buttonBoard.button(5).onTrue(new ShootSpeaker(m_shooter));
+                buttonBoard.button(7).onTrue(new ShootSpeaker(m_shooter));
                 // shoot amp
-                buttonBoard.button(4).onTrue(new ShootAmp(m_shooter));
+                buttonBoard.button(8).onTrue(new ShootAmp(m_shooter));
 
                 buttonBoard.button(11).onTrue(new ArmHome(m_arms));
                 buttonBoard.button(3).onTrue(new ArmPickup(m_arms));
                 buttonBoard.button(2).onTrue(new ArmAmp(m_arms));
                 buttonBoard.button(6).onTrue(new ArmSpeaker(m_arms));
-                buttonBoard.button(7).onTrue(new ArmFeeder(m_arms));
-                buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
+                buttonBoard.button(10).onTrue(new ArmFeeder(m_arms));
+                //buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
 
-                m_driverController.back().onTrue(new RetractClimber(m_climber, true));
-                m_driverController.start().onTrue(new DoTheClimb(m_climber, m_arms));
+                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, false).withTimeout(4));
+                buttonBoard.button(4).onTrue(new DoTheClimb(m_climber, m_arms));
                 m_driverController.axisGreaterThan(5, 0.2).whileTrue(new RunRightClimber(m_climber, 0.1));
                 m_driverController.axisLessThan(5, -0.2).whileTrue(new RunRightClimber(m_climber, -0.1));
                 m_driverController.axisGreaterThan(4, 0.2).whileTrue(new RunLeftClimber(m_climber, 0.1));
                 m_driverController.axisLessThan(4, -0.2).whileTrue(new RunLeftClimber(m_climber, -0.1));
         }
 
-        /**
-         * Use this to pass the autonomous command to the main {@link Robot} class.
-         *
-         * @return the command to run in autonomous
-         */
-        public Command getAutonomousCommandOld() {
-                // Create config for trajectory
-                TrajectoryConfig config = new TrajectoryConfig(
-                                AutoConstants.kMaxSpeedMetersPerSecond,
-
-                                AutoConstants.kMaxAccelerationMetersPerSecondSquared)
-                                // Add kinematics to ensure max speed is actually obeyed
-                                .setKinematics(DriveConstants.kDriveKinematics);
-
-                // An example trajectory to follow. All units in meters.
-                Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
-                                // Start at the origin facing the +X direction
-                                new Pose2d(0, 0, new Rotation2d(0)),
-                                // Pass through these two interior waypoints, making an 's' curve path
-                                List.of(new Translation2d(Units.inchesToMeters(60), 0)
-
-                                ),
-                                // End 2 meters straight ahead of where we started, facing forward
-                                new Pose2d(Units.inchesToMeters(72), Units.inchesToMeters(-48), new Rotation2d(180)),
-                                config);
-
-                Trajectory exampleTrajectory2 = TrajectoryGenerator.generateTrajectory(
-                                // Start at the origin facing the +X direction
-                                new Pose2d(2, 0, new Rotation2d(90)),
-                                // Pass through these two interior waypoints, making an 's' curve path
-                                List.of(
-                                                new Translation2d(0.5, 0.5)
-
-                                ),
-                                // End 2 meters straight ahead of where we started, facing forward
-                                new Pose2d(0, 0, new Rotation2d(0)),
-                                config);
-
-                var thetaController = new ProfiledPIDController(
-                                AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
-                thetaController.enableContinuousInput(-Math.PI, Math.PI);
-
-                SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-                                exampleTrajectory,
-                                m_robotDrive::getPose, // Functional interface to feed supplier
-                                DriveConstants.kDriveKinematics,
-
-                                // Position controllers
-                                new PIDController(AutoConstants.kPXController, 0, 0),
-                                new PIDController(AutoConstants.kPYController, 0, 0),
-                                thetaController,
-                                m_robotDrive::setModuleStates,
-                                m_robotDrive);
-
-                SwerveControllerCommand swerveControllerCommand2 = new SwerveControllerCommand(
-                                exampleTrajectory2,
-                                m_robotDrive::getPose, // Functional interface to feed supplier
-                                DriveConstants.kDriveKinematics,
-
-                                // Position controllers
-                                new PIDController(AutoConstants.kPXController, 0, 0),
-                                new PIDController(AutoConstants.kPYController, 0, 0),
-                                thetaController,
-                                m_robotDrive::setModuleStates,
-                                m_robotDrive);
-
-                // Reset odometry to the starting pose of the trajectory.
-                m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
-
-                // Run path following command, then stop at the end.
-                return swerveControllerCommand
-                                // .andThen(swerveControllerCommand2)
-                                .andThen(() -> m_robotDrive.drive(0, 0, 0, false, false, true));
-        }
-
         public Command getAutonomousCommand() {
-                return new PathPlannerAuto("Auto 6");
+                return auto.getSelected();
         }
 
 }

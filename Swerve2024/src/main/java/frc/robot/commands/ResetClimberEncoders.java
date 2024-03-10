@@ -16,7 +16,7 @@ public class ResetClimberEncoders extends InstantCommand {
   private Climber climber;
   public ResetClimberEncoders(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
-    climber = climber;
+    this.climber = climber;
   }
 
   // Called when the command is initially scheduled.

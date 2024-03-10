@@ -36,7 +36,7 @@ public final class Constants {
     public static final double FeederS = 19;
     public static final double FeederE = -28;
     public static final double ClimberS = 0;
-    public static final double ClimberE = -17;
+    public static final double ClimberE = -19;
 
   }
 

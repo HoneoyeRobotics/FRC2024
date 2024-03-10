@@ -174,10 +174,11 @@ public final class RobotPrefs {
     }
 
      public static double getEndTolerance() {
-        if (!Preferences.containsKey("EndTolerance")) {
-            Preferences.setDouble("EndTolerance", 1);
-        }
-        return Preferences.getDouble("EndTolerance", 1);
+        // if (!Preferences.containsKey("EndTolerance")) {
+        //     Preferences.setDouble("EndTolerance", 1);
+        // }
+        // return Preferences.getDouble("EndTolerance", 1);
+        return 0.25;
     }
 
     

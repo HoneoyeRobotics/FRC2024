@@ -17,7 +17,7 @@ public class DeployClimber extends Command {
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
     addRequirements(climber);
-    LeftSetpoint = 48;
+    LeftSetpoint = 47;
     RightSetpoint = -47;
   }
 
