@@ -1,0 +1,141 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Auto Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="393" y="241"/>
+	</widget>
+	<widget field="Reset Climber Enc" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="68" y="439"/>
+	</widget>
+	<widget field="RightClimbSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="202" y="537"/>
+	</widget>
+	<widget field="RightClimbPos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="216" y="513"/>
+	</widget>
+	<widget field="LeftClimbSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="187" y="360"/>
+	</widget>
+	<widget field="LeftClimbPos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="189" y="382"/>
+	</widget>
+	<widget field="Retract and hold" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="239" y="431"/>
+	</widget>
+	<widget field="Retract Climber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="237" y="455"/>
+	</widget>
+	<widget field="Deploy Climber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="246" y="404"/>
+	</widget>
+	<widget field="Left Climber Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="204" y="342"/>
+	</widget>
+	<widget field="Right Climber Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="195" y="494"/>
+	</widget>
+	<widget field="Stab End" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="326"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="486" y="4"/>
+		<width>664</width>
+		<height>538</height>
+		<property name="Degrees Rotation" value="180"/>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="Sensor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="248" y="88"/>
+	</widget>
+	<widget field="Arms" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="0" y="64"/>
+	</widget>
+	<widget field="Arm Position" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="106" y="306"/>
+	</widget>
+	<widget field="Stab Setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="16" y="381"/>
+	</widget>
+	<widget field="Toggle stab pid" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="350"/>
+	</widget>
+	<widget field="Stab Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="17" y="402"/>
+	</widget>
+	<widget field="ShoulderTol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="6" y="135"/>
+		<height>19</height>
+	</widget>
+	<widget field="ElbowTol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="145"/>
+		<height>19</height>
+	</widget>
+	<widget field="ElbowAtSetpoint" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="211" y="258"/>
+		<width>167</width>
+		<height>32</height>
+	</widget>
+	<widget field="ShoulderAtSetpoint" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="8" y="260"/>
+		<width>176</width>
+		<height>27</height>
+	</widget>
+	<widget field="StabTheNote" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="129" y="60"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="1159" y="95"/>
+		<height>429</height>
+	</static-widget>
+	<widget field="Arm Limit Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="279" y="6"/>
+		<width>174</width>
+		<height>78</height>
+	</widget>
+	<widget field="Reset Gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="138" y="25"/>
+	</widget>
+	<widget field="Reset Elbow Encoder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="214" y="162"/>
+	</widget>
+	<widget field="Reset Shoulder Encoder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="161"/>
+	</widget>
+	<widget field="PID Enabled" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="4" y="482"/>
+		<width>139</width>
+		<height>76</height>
+	</widget>
+	<widget field="elbowSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="226" y="214"/>
+	</widget>
+	<widget field="shoulderSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="22" y="214"/>
+	</widget>
+	<widget field="shoulderSetpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="11" y="191"/>
+	</widget>
+	<widget field="shoulderPosition" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="14" y="237"/>
+	</widget>
+	<widget field="elbowPosition" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="220" y="236"/>
+	</widget>
+	<widget field="elbowSetpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="218" y="192"/>
+	</widget>
+	<widget field="angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="143" y="2"/>
+	</widget>
+	<widget field="rot" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="13" y="44"/>
+	</widget>
+	<widget field="ySpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="20"/>
+	</widget>
+	<widget field="xSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

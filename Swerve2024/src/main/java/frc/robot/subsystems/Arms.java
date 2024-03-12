@@ -197,19 +197,19 @@ public class Arms extends SubsystemBase {
           armPosition == ArmPosition.ToPickup &&
           elbowMotorSetpoint == ArmPositions.PickupE &&
           shoulderMotorSetpoint == ArmPositions.PickupS &&
-          getElbowPosition() < -5){       
+          getElbowPosition() < -4){       
             elbowRotateSpeed = 0;
-           // System.out.println("Cut elbow power.");
+            System.out.println("Cut elbow power.");
           }
 
       if (shoulderRotateSpeed > 0 &&
           armPosition == ArmPosition.ToPickup &&
           elbowMotorSetpoint == ArmPositions.PickupE &&
           shoulderMotorSetpoint == ArmPositions.PickupS &&
-          getShoulderPosition() > 17)   
+          getShoulderPosition() > 15)   
           {       
             shoulderRotateSpeed = 0;
-           // System.out.println("Cut shoulder power.");
+           System.out.println("Cut shoulder power.");
           }
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);

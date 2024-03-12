@@ -28,8 +28,8 @@ public class RetractClimber extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    LeftClimbPID.setSetpoint(-3);
-    RightClimbPID.setSetpoint(3);
+    LeftClimbPID.setSetpoint(-2);
+    RightClimbPID.setSetpoint(2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
