@@ -21,7 +21,7 @@ public class ResetGyro extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_drive.zeroHeading();
+    
 
     m_drive.resetOdometry(new Pose2d());
 

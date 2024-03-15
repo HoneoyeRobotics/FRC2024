@@ -73,7 +73,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
-     m_gyro.reset();
+    m_gyro.reset();
      m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
       Rotation2d.fromDegrees(getGyroAngle()),
@@ -101,7 +101,13 @@ public class DriveSubsystem extends SubsystemBase {
             //Units.inchesToMeters(26 / 2), // Drive base radius in meters. Distance from robot center to furthest module.
             new ReplanningConfig() // Default path replanning config. See the API for the options here
         ),
-        () -> {
+        this::getAlliance,
+        this // Reference to this subsystem to set requirements
+    );
+  }
+
+  public boolean getAlliance(){
+    
           // Boolean supplier that controls when the path will be mirrored for the red
           // alliance
           // This will flip the path being followed to the red side of the field.
@@ -112,11 +118,8 @@ public class DriveSubsystem extends SubsystemBase {
             return alliance.get() == DriverStation.Alliance.Red;
           }
           return false;
-        },
-        this // Reference to this subsystem to set requirements
-    );
+        
   }
-
   public void driveSpeeds(ChassisSpeeds speeds) {
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(speeds);
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates,
@@ -160,6 +163,8 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+        SmartDashboard.putNumber("angle", getGyroAngle());
+        SmartDashboard.putBoolean("Alliance", getAlliance());
   }
 
   /**
@@ -177,6 +182,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @param pose The pose to which to set the odometry.
    */
   public void resetOdometry(Pose2d pose) {
+    m_gyro.setGyroAngleZ(pose.getRotation().getDegrees());
+    
     m_odometry.resetPosition(
         Rotation2d.fromDegrees(getGyroAngle()),
         new SwerveModulePosition[] {
@@ -208,7 +215,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("xSpeed", xSpeed);
     SmartDashboard.putNumber("ySpeed", ySpeed);
     SmartDashboard.putNumber("rot", rot);
-    SmartDashboard.putNumber("angle", getGyroAngle());
+    
 
     double xSpeedCommanded;
     double ySpeedCommanded;
@@ -304,9 +311,9 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   /** Zeroes the heading of the robot. */
-  public void zeroHeading() {
-    m_gyro.reset();
-  }
+  // public void zeroHeading() {
+  //   m_gyro.reset();
+  // }
 
   /**
    * Returns the heading of the robot.

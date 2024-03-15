@@ -1,5 +1,27 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Note In" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="2" y="119"/>
+		<width>404</width>
+	</widget>
+	<widget field="Prev Position" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="454" y="543"/>
+	</widget>
+	<widget field="BottomVelocity" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1359" y="28"/>
+	</widget>
+	<widget field="BottomCurrent" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1203" y="27"/>
+	</widget>
+	<widget field="TopVelocity" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1374" y="7"/>
+	</widget>
+	<widget field="TopCurrent" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1217" y="6"/>
+	</widget>
+	<widget field="Alliance" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="84"/>
+	</widget>
 	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="31" y="467"/>
 	</widget>

@@ -27,8 +27,8 @@ public final class Constants {
   
   public static class ArmPositions{
 
-    public static final double PickupS = 20;
-    public static final double PickupE = -7;
+    public static final double PickupS = 18; //20
+    public static final double PickupE = -6; //-7
     public static final double SpeakerS = 0;
     public static final double SpeakerE = -14;
     public static final double AmpS = 26;

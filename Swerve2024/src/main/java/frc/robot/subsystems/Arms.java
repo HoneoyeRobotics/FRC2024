@@ -31,6 +31,7 @@ public class Arms extends SubsystemBase {
   private double shoulderMotorSetpoint = 0.0;
   private double elbowMotorSetpoint = 0.0;
 
+  private ArmPosition prevPosition = ArmPosition.Home;
   private ArmPosition armPosition = ArmPosition.Home;
 
   public Arms() {
@@ -38,7 +39,7 @@ public class Arms extends SubsystemBase {
     shoulderMotor.getEncoder().setPosition(0.0);
     elbowMotor.getEncoder().setPosition(0.0);
 
-    shoulderPIDContrller = new PIDController(0.2, 0, 0);
+    shoulderPIDContrller = new PIDController(0.4, 0, 0);
     shoulderPIDContrller.setSetpoint(0.0);
     shoulderPIDContrller.setTolerance(0.5);
 
@@ -56,12 +57,27 @@ public class Arms extends SubsystemBase {
   }
 
   public void setArmPosition(ArmPosition armPosition) {
+    prevPosition = this.armPosition;
     this.armPosition = armPosition;
     SmartDashboard.putString("Arm Position", armPosition.toString());
+    SmartDashboard.putString("Prev Position", prevPosition.toString());
   }
 
   public ArmPosition getArmPosition() {
     return armPosition;
+  }
+
+  public void FixArmInTeleop(){
+    switch(armPosition){
+      case ToAmp:
+      case ToClimber:
+      case ToFeeder:
+      case ToSpeaker:
+      case ToHome:
+      case ToPickup:
+        armPosition = prevPosition;
+        break;
+    }
   }
 
   public void setTolerance(double tolerance) {
@@ -213,8 +229,8 @@ public class Arms extends SubsystemBase {
           }
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);
-      // SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
-      // SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
+      SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
+      SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
 
     } else {
       // SmartDashboard.putNumber("shoulderSpeed", 0);
