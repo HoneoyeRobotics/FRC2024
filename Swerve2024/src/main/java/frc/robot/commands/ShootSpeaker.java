@@ -15,6 +15,7 @@ public class ShootSpeaker extends SequentialCommandGroup {
   public ShootSpeaker(Shooter shooter) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ShootSequence(shooter, 01.2,1.5, 1));
+    addCommands(new ShootSequence(shooter, 01,1.5, 1));
+    //addCommands(new ShootSequence(shooter, 3,5, 1));
   }
 }

@@ -75,9 +75,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Auto B",
+  "folder": "Auto 11",
   "previewStartingState": {
-    "rotation": 118.96766064606403,
+    "rotation": 120.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

@@ -50,7 +50,7 @@ public class RetractClimber extends Command {
   @Override
   public boolean isFinished() {
     if (Hold == true)
-    return false;
+      return false;
     return LeftClimbPID.atSetpoint() && RightClimbPID.atSetpoint();
   }
 }

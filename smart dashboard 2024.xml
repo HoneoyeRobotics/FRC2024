@@ -1,7 +1,10 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="31" y="467"/>
+	</widget>
 	<widget field="Auto Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="393" y="241"/>
+		<location x="380" y="218"/>
 	</widget>
 	<widget field="Reset Climber Enc" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="68" y="439"/>
@@ -13,10 +16,11 @@
 		<location x="216" y="513"/>
 	</widget>
 	<widget field="LeftClimbSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="187" y="360"/>
+		<location x="30" y="538"/>
 	</widget>
 	<widget field="LeftClimbPos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="189" y="382"/>
+		<location x="42" y="515"/>
+		<height>21</height>
 	</widget>
 	<widget field="Retract and hold" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="239" y="431"/>
@@ -28,7 +32,7 @@
 		<location x="246" y="404"/>
 	</widget>
 	<widget field="Left Climber Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="204" y="342"/>
+		<location x="24" y="494"/>
 	</widget>
 	<widget field="Right Climber Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="195" y="494"/>
@@ -99,11 +103,6 @@
 	</widget>
 	<widget field="Reset Shoulder Encoder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="5" y="161"/>
-	</widget>
-	<widget field="PID Enabled" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="4" y="482"/>
-		<width>139</width>
-		<height>76</height>
 	</widget>
 	<widget field="elbowSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="226" y="214"/>

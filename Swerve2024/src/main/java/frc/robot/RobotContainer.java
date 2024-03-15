@@ -110,21 +110,27 @@ private SendableChooser<Command> auto = new SendableChooser<>();
 
 
                 SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
-                SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber, false));
+                SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber, true).withTimeout(3));
                 SmartDashboard.putData("Reset Climber Enc", new ResetClimberEncoders(m_climber));
                 SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber, true));
 
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
-                auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
-                auto.setDefaultOption("auto 2", new PathPlannerAuto("Auto 2"));
-                auto.addOption("auto 3", new PathPlannerAuto("Auto 3"));
-                auto.addOption("auto 4", new PathPlannerAuto("Auto 4"));
-                auto.addOption("auto 5", new PathPlannerAuto("Auto 5"));
-                auto.addOption("auto 6", new PathPlannerAuto("Auto 6"));
-                auto.addOption("auto 7", new PathPlannerAuto("Auto 7"));
-                auto.addOption("Auto 8", new PathPlannerAuto("Auto 8"));
-                auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
+               // auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
+                auto.setDefaultOption("Center back, center, feeder", new PathPlannerAuto("Auto 2"));
+                auto.addOption("Feeder, center, far 2nd Amp", new PathPlannerAuto("Auto 3"));
+                auto.addOption("Amp back", new PathPlannerAuto("Auto 4"));
+                auto.addOption("Feeder back", new PathPlannerAuto("Auto 5"));
+               // auto.addOption("auto 6", new PathPlannerAuto("Auto 6"));
+                auto.addOption("Center back Amp", new PathPlannerAuto("Auto 7"));
+                auto.addOption("Center far 2nd amp", new PathPlannerAuto("Auto 8"));
+                auto.addOption("Feeder far feeder", new PathPlannerAuto("Auto 9"));
+                auto.addOption("Feeder 2nd far", new PathPlannerAuto("Auto 10"));
+                auto.addOption("Feeder far middle", new PathPlannerAuto("Auto 11"));
+                auto.addOption("Shoot than stop-AMP", new PathPlannerAuto("Shoot than stop-AMP"));
+                auto.addOption("Shoot than stop-Feeder", new PathPlannerAuto("Shoot than stop-Feeder"));
+                //auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
                 SmartDashboard.putData("Auto Mode", auto);
+                SmartDashboard.putData(m_climber);
 
         }
 
@@ -163,7 +169,7 @@ private SendableChooser<Command> auto = new SendableChooser<>();
                 buttonBoard.button(10).onTrue(new ArmFeeder(m_arms));
                 //buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
 
-                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, false).withTimeout(4));
+                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, true).withTimeout(3));
                 buttonBoard.button(4).onTrue(new DoTheClimb(m_climber, m_arms));
                 m_driverController.axisGreaterThan(5, 0.2).whileTrue(new RunRightClimber(m_climber, 0.1));
                 m_driverController.axisLessThan(5, -0.2).whileTrue(new RunRightClimber(m_climber, -0.1));

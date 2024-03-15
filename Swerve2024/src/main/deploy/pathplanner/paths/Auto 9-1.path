@@ -67,7 +67,7 @@
   "reversed": false,
   "folder": "Auto 9",
   "previewStartingState": {
-    "rotation": 120.41,
+    "rotation": 120.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

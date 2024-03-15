@@ -65,9 +65,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Auto A",
+  "folder": "Auto 10",
   "previewStartingState": {
-    "rotation": 120.41,
+    "rotation": 120.0,
     "velocity": 0
   },
   "useDefaultConstraints": true
