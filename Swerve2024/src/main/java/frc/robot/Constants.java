@@ -29,7 +29,7 @@ public final class Constants {
 
     public static final double PickupS = 18; //20
     public static final double PickupE = -6; //-7
-    public static final double SpeakerS = 0;
+    public static final double SpeakerS = -1;
     public static final double SpeakerE = -14;
     public static final double AmpS = 26;
     public static final double AmpE = -32;

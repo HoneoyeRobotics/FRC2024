@@ -123,6 +123,7 @@ public class RobotContainer {
                 auto.setDefaultOption("Center back, center, feeder", new PathPlannerAuto("Auto 2"));
                 
                 auto.setDefaultOption("Center back, center (lame)", new PathPlannerAuto("Auto 2 lame"));
+                auto.setDefaultOption("AUTO STAY", new PathPlannerAuto("AUTO STAY"));
                 
                 auto.setDefaultOption("Center back, center, amp", new PathPlannerAuto("Auto 2-Up"));
                 auto.addOption("Feeder, center, far 2nd Amp", new PathPlannerAuto("Auto 3"));

@@ -27,7 +27,7 @@ public class FeederToHome extends SequentialCommandGroup {
       new MoveArmsToPosition(m_arms, 8, -15, RobotPrefs.getMiddleTolerance()),
       new MoveArmsToPosition(m_arms, 2, -6, RobotPrefs.getMiddleTolerance()),
       new MoveArmsToPosition(m_arms, 0, -3, RobotPrefs.getMiddleTolerance()),
-      new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+      new MoveArmsToPosition(m_arms, -1, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
       new ToggleArmPosition(m_arms, ArmPosition.Home)
     
     );

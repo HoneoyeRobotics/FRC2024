@@ -28,8 +28,8 @@ public class PickUpToHome extends SequentialCommandGroup {
      new MoveArmsToPosition(m_arms, 15, -7, RobotPrefs.getMiddleTolerance()),
      new MoveArmsToPosition(m_arms, 12, -7, RobotPrefs.getMiddleTolerance()),
      new MoveArmsToPosition(m_arms, 6, -7, RobotPrefs.getMiddleTolerance()),
-     new MoveArmsToPosition(m_arms, 0, -7, RobotPrefs.getMiddleTolerance()),
-     new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+     new MoveArmsToPosition(m_arms, -1, -7, RobotPrefs.getMiddleTolerance()),
+     new MoveArmsToPosition(m_arms, -1, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
      new ToggleArmPosition(m_arms, ArmPosition.Home)
     );
   }

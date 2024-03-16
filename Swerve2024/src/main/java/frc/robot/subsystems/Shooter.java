@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
@@ -13,16 +13,17 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Direction;
-import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
+//import edu.wpi.first.wpilibj.Relay;
+//import edu.wpi.first.wpilibj.Relay.Direction;
+//import edu.wpi.first.wpilibj.Relay.Value;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.RobotPrefs;
+//import frc.robot.RobotPrefs;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -99,7 +100,7 @@ public class Shooter extends SubsystemBase {
     // SmartDashboard.putNumber("Sensor", noteSensor.getValue());
     // SmartDashboard.putNumber("Stab Position", getStabPosition());
     // SmartDashboard.putNumber("Stab Setpoint", stabPidController.getSetpoint());
-SmartDashboard.putBoolean("Note In", noteCheck());
+//SmartDashboard.putBoolean("Note In", noteCheck());
     // if (stabPidController.getP() != RobotPrefs.getStabP())
     // stabPidController.setP(RobotPrefs.getStabP());
 
