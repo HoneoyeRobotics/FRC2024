@@ -120,24 +120,26 @@ public class RobotContainer {
 
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
                 // auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
-                auto.setDefaultOption("Center back, center, feeder", new PathPlannerAuto("Auto 2"));
+                auto.setDefaultOption("Auto 2", new PathPlannerAuto("Auto 2"));
                 
-                auto.setDefaultOption("Center back, center (lame)", new PathPlannerAuto("Auto 2 lame"));
+                auto.setDefaultOption("Auto 2 lame", new PathPlannerAuto("Auto 2 lame"));
                 auto.setDefaultOption("AUTO STAY", new PathPlannerAuto("AUTO STAY"));
                 
-                auto.setDefaultOption("Center back, center, amp", new PathPlannerAuto("Auto 2-Up"));
-                auto.addOption("Feeder, center, far 2nd Amp", new PathPlannerAuto("Auto 3"));
-                auto.addOption("Amp back", new PathPlannerAuto("Auto 4"));
-                auto.addOption("Feeder back", new PathPlannerAuto("Auto 5"));
+                auto.setDefaultOption("Auto 2-up", new PathPlannerAuto("Auto 2-Up"));
+                auto.addOption("Auto 3", new PathPlannerAuto("Auto 3"));
+                auto.addOption("Auto 4", new PathPlannerAuto("Auto 4"));
+                auto.addOption("Auto 5", new PathPlannerAuto("Auto 5"));
                 // auto.addOption("auto 6", new PathPlannerAuto("Auto 6"));
-                auto.addOption("Center back Amp", new PathPlannerAuto("Auto 7"));
-                auto.addOption("Center far 2nd amp", new PathPlannerAuto("Auto 8"));
-                auto.addOption("Feeder far feeder", new PathPlannerAuto("Auto 9"));
-                auto.addOption("Feeder 2nd far", new PathPlannerAuto("Auto 10"));
-                auto.addOption("Feeder far middle", new PathPlannerAuto("Auto 11"));
+                auto.addOption("Auto 7", new PathPlannerAuto("Auto 7"));
+                auto.addOption("Auto 8", new PathPlannerAuto("Auto 8"));
+                auto.addOption("Auto 9", new PathPlannerAuto("Auto 9"));
+                auto.addOption("Auto 10", new PathPlannerAuto("Auto 10"));
+                auto.addOption("Auto YOUR MOM", new PathPlannerAuto("Auto 11"));
                 auto.addOption("Shoot than stop-AMP", new PathPlannerAuto("Shoot than stop-AMP"));
                 auto.addOption("Shoot than stop-Feeder", new PathPlannerAuto("Shoot than stop-Feeder"));
                 auto.addOption("KRT", new PathPlannerAuto("KRT"));
+                auto.addOption("Auto STAY AT UR MOMS HOUSE", new PathPlannerAuto("Auto STAY AT UR MOMS HOUSE"));
+                auto.addOption("Auto STAY AT UR DADS HOUSE", new PathPlannerAuto("Auto STAY AT UR DADS HOUSE"));
                 // auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
                 SmartDashboard.putData("Auto Mode", auto);
                 // SmartDashboard.putData(m_climber);
