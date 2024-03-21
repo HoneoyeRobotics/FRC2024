@@ -1,0 +1,74 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.63590181725818,
+        "y": 7.518969219756621
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 8.65273512365313,
+        "y": 7.341723047078376
+      },
+      "isLocked": false,
+      "linkedName": "Sab 1 end"
+    },
+    {
+      "anchor": {
+        "x": 8.242270302723488,
+        "y": 6.65139584824216
+      },
+      "prevControl": {
+        "x": 8.195626573072394,
+        "y": 7.7615166139382366
+      },
+      "nextControl": {
+        "x": 8.2608752768881,
+        "y": 6.208597463124389
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.242270302723488,
+        "y": 0.9328745930178319
+      },
+      "prevControl": {
+        "x": 8.372872745746557,
+        "y": 1.9963516290628127
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Sab 2 end"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.0,
+      "rotationDegrees": -90.0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 180.0,
+    "maxAngularAcceleration": 180.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -90.0,
+    "rotateFast": true
+  },
+  "reversed": false,
+  "folder": "Sabotage",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": false
+}

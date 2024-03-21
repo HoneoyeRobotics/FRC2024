@@ -140,6 +140,8 @@ public class RobotContainer {
                 auto.addOption("KRT", new PathPlannerAuto("KRT"));
                 auto.addOption("Auto STAY AT UR MOMS HOUSE", new PathPlannerAuto("Auto STAY AT UR MOMS HOUSE"));
                 auto.addOption("Auto STAY AT UR DADS HOUSE", new PathPlannerAuto("Auto STAY AT UR DADS HOUSE"));
+                auto.addOption("Sabatoage", new PathPlannerAuto("Sabatoage"));
+                auto.addOption("Sabatoage and shoot", new PathPlannerAuto("Sabatoage and shoot"));
                 // auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
                 SmartDashboard.putData("Auto Mode", auto);
                 // SmartDashboard.putData(m_climber);
