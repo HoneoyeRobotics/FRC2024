@@ -137,6 +137,10 @@ public class DriveSubsystem extends SubsystemBase {
         m_rearRight.getState());
   }
 
+  public void calibrateGyro(){
+    m_gyro.calibrate();
+  }
+
   public double getGyroAngle() {
     // double angle = m_gyro.getAngle();
     // while(angle > 360){
@@ -212,9 +216,9 @@ public class DriveSubsystem extends SubsystemBase {
       ySpeed /= 3;
       rot /= 2;
     }
-    SmartDashboard.putNumber("xSpeed", xSpeed);
-    SmartDashboard.putNumber("ySpeed", ySpeed);
-    SmartDashboard.putNumber("rot", rot);
+    // SmartDashboard.putNumber("xSpeed", xSpeed);
+    // SmartDashboard.putNumber("ySpeed", ySpeed);
+    // SmartDashboard.putNumber("rot", rot);
     
 
     double xSpeedCommanded;

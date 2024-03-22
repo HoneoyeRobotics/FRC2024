@@ -86,7 +86,20 @@ public class RobotContainer {
                 NamedCommands.registerCommand("ArmHome", new ArmHome(m_arms));
                 NamedCommands.registerCommand("ArmPickup", new ArmPickup(m_arms));
                 NamedCommands.registerCommand("RunPickup", new RunShooter(m_shooter, -0.5));
+                NamedCommands.registerCommand("RunPickupReverse", new RunShooter(m_shooter, 0.25));
+                NamedCommands.registerCommand("WigglePickup", 
+                        new SequentialCommandGroup(
+                                new RunShooterDontRequire(m_shooter, 0.25).withTimeout(0.25),
+                                new RunShooterDontRequire(m_shooter, -0.5).withTimeout(1)
+                        )
+                );
 
+                SmartDashboard.putData("wiggle",  new SequentialCommandGroup(
+                                new RunShooterDontRequire(m_shooter, 0.2).withTimeout(0.1),
+                                new RunShooterUntilTripped(m_shooter, -0.2)
+                        ));
+
+                
                 m_robotDrive.setDefaultCommand(
                                 // The left stick controls translation of the robot.
                                 // Turning is controlled by the X axis of the right stick.
@@ -122,10 +135,10 @@ public class RobotContainer {
                 // auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
                 auto.setDefaultOption("Auto 2", new PathPlannerAuto("Auto 2"));
                 
-                auto.setDefaultOption("Auto 2 lame", new PathPlannerAuto("Auto 2 lame"));
-                auto.setDefaultOption("AUTO STAY", new PathPlannerAuto("AUTO STAY"));
+                auto.addOption("Auto 2 lame", new PathPlannerAuto("Auto 2 lame"));
+                auto.addOption("AUTO STAY", new PathPlannerAuto("AUTO STAY"));
                 
-                auto.setDefaultOption("Auto 2-up", new PathPlannerAuto("Auto 2-Up"));
+                auto.addOption("Auto 2-up", new PathPlannerAuto("Auto 2-Up"));
                 auto.addOption("Auto 3", new PathPlannerAuto("Auto 3"));
                 auto.addOption("Auto 4", new PathPlannerAuto("Auto 4"));
                 auto.addOption("Auto 5", new PathPlannerAuto("Auto 5"));
@@ -145,6 +158,7 @@ public class RobotContainer {
                 // auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
                 SmartDashboard.putData("Auto Mode", auto);
                 // SmartDashboard.putData(m_climber);
+          //      SmartDashboard.putData("Calibrate Gyro", new CalibrateGyro(m_robotDrive));
 
         }
 
@@ -181,11 +195,12 @@ public class RobotContainer {
                 buttonBoard.button(3).onTrue(new ArmPickup(m_arms));
                 buttonBoard.button(2).onTrue(new ArmAmp(m_arms));
                 buttonBoard.button(6).onTrue(new ArmSpeaker(m_arms));
-                buttonBoard.button(10).onTrue(new ArmFeeder(m_arms));
+                // buttonBoard.button(10).onTrue(new ArmFeeder(m_arms));
+                buttonBoard.button(10).onTrue(new ForceHome(m_arms));
                 buttonBoard.button(9).onTrue(new ToggleArmPosition(m_arms,
                 ArmPosition.Home));
 
-                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, true).withTimeout(3));
+                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, true).withTimeout(8));
                 buttonBoard.button(4).onTrue(new DoTheClimb(m_climber, m_arms));
                 m_driverController.axisGreaterThan(5, 0.2).whileTrue(new RunRightClimber(m_climber, 0.1));
                 m_driverController.axisLessThan(5, -0.2).whileTrue(new RunRightClimber(m_climber, -0.1));

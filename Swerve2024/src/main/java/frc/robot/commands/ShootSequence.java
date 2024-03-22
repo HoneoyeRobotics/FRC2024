@@ -18,7 +18,7 @@ public class ShootSequence extends ParallelCommandGroup {
   public ShootSequence(Shooter shooter, double shooterWait, double shooterTime, double shooterSpeed) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand())
-    
+  
     addCommands(
     //run the shooter for x seconds.
       new RunShooter(shooter, shooterSpeed).withTimeout(shooterTime),

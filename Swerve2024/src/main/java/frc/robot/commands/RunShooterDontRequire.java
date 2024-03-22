@@ -9,14 +9,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
-public class RunShooter extends Command {
+public class RunShooterDontRequire extends Command {
   private final Shooter m_Subsystem;
   private final double speed;
 
   /** Creates a new IndependentShooter. */
-  public RunShooter(Shooter subsystem, double speed) {
+  public RunShooterDontRequire(Shooter subsystem, double speed) {
     m_Subsystem = subsystem;
-    addRequirements(subsystem);
     this.speed = speed;
   }
 

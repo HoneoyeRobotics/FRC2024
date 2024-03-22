@@ -196,6 +196,12 @@
                     }
                   ]
                 }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "WigglePickup"
+                }
               }
             ]
           }

@@ -43,7 +43,7 @@ public class Arms extends SubsystemBase {
     shoulderPIDContrller.setSetpoint(0.0);
     shoulderPIDContrller.setTolerance(0.5);
 
-    elbowPIDContrller = new PIDController(0.2, 0, 0);
+    elbowPIDContrller = new PIDController(0.3, 0, 0);
     elbowPIDContrller.setSetpoint(0.0);
     elbowPIDContrller.setTolerance(0.5);
 
@@ -67,6 +67,12 @@ public class Arms extends SubsystemBase {
     return armPosition;
   }
 
+  
+  public ArmPosition getPreviousPosition() {
+    return prevPosition;
+  }
+
+
   public void FixArmInTeleop(){
     switch(armPosition){
       case ToAmp:
@@ -86,7 +92,7 @@ public class Arms extends SubsystemBase {
   }
 
   public boolean getArmLimitSwitch() {
-    return ArmLimitSwitch.get();
+    return !(ArmLimitSwitch.get());
   }
 
   public void togglePID() {
@@ -187,7 +193,10 @@ public class Arms extends SubsystemBase {
 
       double shoulderRotateSpeed = shoulderPIDContrller.calculate(getShoulderPosition(), shoulderMotorSetpoint);
       double elbowRotateSpeed = elbowPIDContrller.calculate(getElbowPosition(), elbowMotorSetpoint);
-      if (getArmLimitSwitch() && shoulderRotateSpeed < 0) {
+      if (getArmLimitSwitch() && 
+          shoulderRotateSpeed < 0 && 
+          getShoulderPosition() <= 1 && 
+          shoulderMotorSetpoint <= 0) {
         shoulderRotateSpeed = 0;
         shoulderMotorSetpoint = 0;
         resetshoulderEncoder();
@@ -204,33 +213,33 @@ public class Arms extends SubsystemBase {
       if (elbowRotateSpeed > 0 && Elbowclose == false)
         elbowRotateSpeed = 0.22;
       if (elbowRotateSpeed < 0 && Elbowclose == false)
-        elbowRotateSpeed = -0.22;
+        elbowRotateSpeed = -0.45;
 
       if (elbowRotateSpeed > 0 && elbowMotorSetpoint == 0 && getElbowPosition() > -4)
         elbowRotateSpeed = 0;
 
-      if (elbowRotateSpeed < 0 &&
-          armPosition == ArmPosition.ToPickup &&
-          elbowMotorSetpoint == ArmPositions.PickupE &&
-          shoulderMotorSetpoint == ArmPositions.PickupS &&
-          getElbowPosition() < -4){       
-            elbowRotateSpeed = 0;
-            System.out.println("Cut elbow power.");
-          }
+      // if (elbowRotateSpeed < 0 &&
+      //     armPosition == ArmPosition.ToPickup &&
+      //     elbowMotorSetpoint == ArmPositions.PickupE &&
+      //     shoulderMotorSetpoint == ArmPositions.PickupS &&
+      //     getElbowPosition() < -5){       
+      //       elbowRotateSpeed = 0;
+      //     //  System.out.println("Cut elbow power.");
+      //     }
 
       if (shoulderRotateSpeed > 0 &&
           armPosition == ArmPosition.ToPickup &&
           elbowMotorSetpoint == ArmPositions.PickupE &&
           shoulderMotorSetpoint == ArmPositions.PickupS &&
-          getShoulderPosition() > 15)   
+          getShoulderPosition() > 14)   
           {       
             shoulderRotateSpeed = 0;
-           System.out.println("Cut shoulder power.");
+         //  System.out.println("Cut shoulder power.");
           }
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);
-      SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
-      SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
+      // SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
+      // SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
 
     } else {
       // SmartDashboard.putNumber("shoulderSpeed", 0);

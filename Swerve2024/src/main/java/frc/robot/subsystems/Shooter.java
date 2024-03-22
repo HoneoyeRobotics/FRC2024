@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-
+import frc.robot.RobotPrefs;
 //import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -98,21 +98,20 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     // SmartDashboard.putNumber("Sensor", noteSensor.getValue());
-    // SmartDashboard.putNumber("Stab Position", getStabPosition());
-    // SmartDashboard.putNumber("Stab Setpoint", stabPidController.getSetpoint());
+      SmartDashboard.putNumber("Stab Position", getStabPosition());
+     SmartDashboard.putNumber("Stab Setpoint", stabPidController.getSetpoint());
 //SmartDashboard.putBoolean("Note In", noteCheck());
-    // if (stabPidController.getP() != RobotPrefs.getStabP())
-    // stabPidController.setP(RobotPrefs.getStabP());
+    if (stabPidController.getP() != RobotPrefs.getStabP())
+    stabPidController.setP(RobotPrefs.getStabP());
 
-    // if (stabPidController.getI() != RobotPrefs.getStabI())
-    // stabPidController.setI(RobotPrefs.getStabI());
+    if (stabPidController.getI() != RobotPrefs.getStabI())
+    stabPidController.setI(RobotPrefs.getStabI());
 
-    // if (stabPidController.getD() != RobotPrefs.getStabD())
-    // stabPidController.setD(RobotPrefs.getStabD());
-    if (stabenabled == true) {
+    if (stabPidController.getD() != RobotPrefs.getStabD())
+    stabPidController.setD(RobotPrefs.getStabD());
       double stabbyspeed = stabPidController.calculate(getStabPosition());
       RunTheThingThatStabsTheNote(stabbyspeed);
-    }
+    
   }
 
   public void setStabPosition(double pos) {

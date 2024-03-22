@@ -20,10 +20,13 @@ public class DeployClimber extends Command {
     LeftSetpoint = 28;
     RightSetpoint = -27;
   }
-
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+    
+    climber.holdClimber = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
