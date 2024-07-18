@@ -26,7 +26,7 @@ public class PickupToSpeaker extends SequentialCommandGroup {
 
         new ToggleArmPosition(m_arms, ArmPosition.ToSpeaker),
         // new MoveArmsToPosition(m_arms, 19,-7, RobotPrefs.getEndTolerance()),
-        new MoveArmsToPosition(m_arms, 15, -7, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 15, .129, RobotPrefs.getMiddleTolerance()),
         // new MoveArmsToPosition(m_arms, 15,-12, RobotPrefs.getMiddleTolerance()),
         new MoveArmsToPosition(m_arms, ArmPositions.SpeakerS , ArmPositions.SpeakerE, RobotPrefs.getEndTolerance()).withTimeout(1.5),
         new ToggleArmPosition(m_arms, ArmPosition.Speaker));

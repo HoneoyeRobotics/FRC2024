@@ -24,9 +24,9 @@ public class PickUpToAmp extends SequentialCommandGroup {
     this.m_arms = m_arms;
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToAmp),
-        new MoveArmsToPosition(m_arms, 10, -10, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 10, .185, RobotPrefs.getMiddleTolerance()),
         //new MoveArmsToPosition(m_arms, 12, -15, RobotPrefs.getMiddleTolerance()),
-        new MoveArmsToPosition(m_arms, 15, -26, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 15, .481, RobotPrefs.getMiddleTolerance()),
         new MoveArmsToPosition(m_arms,  ArmPositions.AmpS , ArmPositions.AmpE, RobotPrefs.getEndTolerance()).withTimeout(1.5),
         new ToggleArmPosition(m_arms, ArmPosition.Amp)
 

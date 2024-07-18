@@ -1,5 +1,11 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="elbowPositionABS" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="214" y="122"/>
+	</widget>
+	<widget field="shoulderPositionABS" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="92"/>
+	</widget>
 	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="31" y="467"/>
 	</widget>
@@ -74,7 +80,7 @@
 		<height>19</height>
 	</widget>
 	<widget field="ElbowAtSetpoint" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="211" y="258"/>
+		<location x="216" y="279"/>
 		<width>167</width>
 		<height>32</height>
 	</widget>
@@ -117,7 +123,7 @@
 		<location x="14" y="237"/>
 	</widget>
 	<widget field="elbowPosition" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="220" y="236"/>
+		<location x="219" y="233"/>
 	</widget>
 	<widget field="elbowSetpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="218" y="192"/>

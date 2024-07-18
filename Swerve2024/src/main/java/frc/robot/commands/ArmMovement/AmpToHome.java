@@ -23,10 +23,10 @@ public class AmpToHome extends SequentialCommandGroup {
     this.m_arms = m_arms;
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToHome),
-        new MoveArmsToPosition(m_arms, 20, -28, RobotPrefs.getMiddleTolerance()),
-        new MoveArmsToPosition(m_arms, 12, -18, RobotPrefs.getMiddleTolerance()),
-        new MoveArmsToPosition(m_arms, 6, -12, RobotPrefs.getMiddleTolerance()),
-        new MoveArmsToPosition(m_arms, 0, -5, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 20, .517, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 12, .333, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 6, .222, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 0, .092, RobotPrefs.getMiddleTolerance()),
         new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
         new ToggleArmPosition(m_arms, ArmPosition.Home));
   }

@@ -42,9 +42,9 @@ public class Arms extends SubsystemBase {
     shoulderPIDContrller.setSetpoint(0.0);
     shoulderPIDContrller.setTolerance(0.5);
 
-    elbowPIDContrller = new PIDController(0.2, 0, 0);
+    elbowPIDContrller = new PIDController(2, 0, 0);
     elbowPIDContrller.setSetpoint(0.0);
-    elbowPIDContrller.setTolerance(0.5);
+    elbowPIDContrller.setTolerance(0.007);
 
     shoulderMotor.setIdleMode(IdleMode.kBrake);
     elbowMotor.setIdleMode(IdleMode.kBrake);
@@ -70,7 +70,7 @@ public class Arms extends SubsystemBase {
   }
 
   public boolean getArmLimitSwitch() {
-    return ArmLimitSwitch.get();
+    return ArmLimitSwitch.get() == false;
   }
 
   public void togglePID() {
@@ -82,7 +82,7 @@ public class Arms extends SubsystemBase {
 
   public void resetallpositions() {
     shoulderMotorSetpoint = shoulderMotor.getEncoder().getPosition();
-    elbowMotorSetpoint = elbowMotor.getEncoder().getPosition();
+   //elbowMotorSetpoint = elbowMotor.getAbsoluteEncoder().getPosition();
 
   }
 
@@ -97,7 +97,10 @@ public class Arms extends SubsystemBase {
   }
 
   public double getElbowPosition() {
-    return elbowMotor.getEncoder().getPosition();
+    double position =  elbowMotor.getAbsoluteEncoder().getPosition();
+    if(position > 0.7)
+      position = 0;
+    return position;
   }
 
   public double getShoulderPosition() {
@@ -148,29 +151,33 @@ public class Arms extends SubsystemBase {
     SmartDashboard.putNumber("shoulderPosition", getShoulderPosition());
     SmartDashboard.putNumber("shoulderSetpoint", shoulderMotorSetpoint);
 
+    
+    SmartDashboard.putNumber("elbowPositionABS", elbowMotor.getAbsoluteEncoder().getPosition());
+
+
     SmartDashboard.putBoolean("Arm Limit Switch", getArmLimitSwitch());
     if (PIDEnabled) {
 
-      // if (shoulderPIDContrller.getP() != RobotPrefs.getShoulderP())
-      // shoulderPIDContrller.setP(RobotPrefs.getShoulderP());
+      if (shoulderPIDContrller.getP() != RobotPrefs.getShoulderP())
+      shoulderPIDContrller.setP(RobotPrefs.getShoulderP());
 
-      // if (shoulderPIDContrller.getI() != RobotPrefs.getShoulderI())
-      // shoulderPIDContrller.setI(RobotPrefs.getShoulderI());
+      if (shoulderPIDContrller.getI() != RobotPrefs.getShoulderI())
+      shoulderPIDContrller.setI(RobotPrefs.getShoulderI());
 
-      // if (shoulderPIDContrller.getD() != RobotPrefs.getShoulderD())
-      // shoulderPIDContrller.setD(RobotPrefs.getShoulderD());
+      if (shoulderPIDContrller.getD() != RobotPrefs.getShoulderD())
+      shoulderPIDContrller.setD(RobotPrefs.getShoulderD());
 
-      // if (elbowPIDContrller.getP() != RobotPrefs.getElbowP())
-      // elbowPIDContrller.setP(RobotPrefs.getElbowP());
+      if (elbowPIDContrller.getP() != RobotPrefs.getElbowP())
+      elbowPIDContrller.setP(RobotPrefs.getElbowP());
 
-      // if (elbowPIDContrller.getI() != RobotPrefs.getElbowI())
-      // elbowPIDContrller.setI(RobotPrefs.getElbowI());
+      if (elbowPIDContrller.getI() != RobotPrefs.getElbowI())
+      elbowPIDContrller.setI(RobotPrefs.getElbowI());
 
-      // if (elbowPIDContrller.getD() != RobotPrefs.getElbowD())
-      // elbowPIDContrller.setD(RobotPrefs.getElbowD());
+      if (elbowPIDContrller.getD() != RobotPrefs.getElbowD())
+      elbowPIDContrller.setD(RobotPrefs.getElbowD());
 
       double shoulderRotateSpeed = shoulderPIDContrller.calculate(getShoulderPosition(), shoulderMotorSetpoint);
-      double elbowRotateSpeed = elbowPIDContrller.calculate(getElbowPosition(), elbowMotorSetpoint);
+      double elbowRotateSpeed = elbowPIDContrller.calculate(getElbowPosition(), elbowMotorSetpoint) * -1;
       if (getArmLimitSwitch() && shoulderRotateSpeed < 0) {
         shoulderRotateSpeed = 0;
         shoulderMotorSetpoint = 0;
@@ -178,26 +185,27 @@ public class Arms extends SubsystemBase {
       }
 
       boolean Shoulderclose = Math.abs(shoulderMotorSetpoint - getShoulderPosition()) < 2;
-      boolean Elbowclose = Math.abs(elbowMotorSetpoint - getElbowPosition()) < 2;
+      boolean Elbowclose = Math.abs(elbowMotorSetpoint - getElbowPosition()) < 0.01;
 
       if (shoulderRotateSpeed > 0 && Shoulderclose == false)
         shoulderRotateSpeed = 0.33;
       if (shoulderRotateSpeed < 0 && Shoulderclose == false)
         shoulderRotateSpeed = -0.33;
 
-      if (elbowRotateSpeed > 0 && Elbowclose == false)
+      if (elbowRotateSpeed > 0 && Elbowclose == false && elbowRotateSpeed > 0.22)
         elbowRotateSpeed = 0.22;
-      if (elbowRotateSpeed < 0 && Elbowclose == false)
-        elbowRotateSpeed = -0.22;
+      // if (elbowRotateSpeed < 0 && Elbowclose == false)
+      //   elbowRotateSpeed = -0.33;
 
-      if (elbowRotateSpeed > 0 && elbowMotorSetpoint == 0 && getElbowPosition() > -4)
+      if (elbowRotateSpeed > 0 && elbowMotorSetpoint == 0 && 
+      (getElbowPosition() <= 0.007  || getElbowPosition() > 0.7))
         elbowRotateSpeed = 0;
 
       if (elbowRotateSpeed < 0 &&
           armPosition == ArmPosition.ToPickup &&
           elbowMotorSetpoint == ArmPositions.PickupE &&
           shoulderMotorSetpoint == ArmPositions.PickupS &&
-          getElbowPosition() < -4){       
+          getElbowPosition() < 0.07){       
             elbowRotateSpeed = 0;
             System.out.println("Cut elbow power.");
           }
@@ -213,8 +221,8 @@ public class Arms extends SubsystemBase {
           }
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);
-      // SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
-      // SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
+      SmartDashboard.putNumber("shoulderSpeed", shoulderRotateSpeed);
+      SmartDashboard.putNumber("elbowSpeed", elbowRotateSpeed);
 
     } else {
       // SmartDashboard.putNumber("shoulderSpeed", 0);

@@ -28,15 +28,15 @@ public final class Constants {
   public static class ArmPositions{
 
     public static final double PickupS = 20;
-    public static final double PickupE = -7;
+    public static final double PickupE = .19;
     public static final double SpeakerS = 0;
-    public static final double SpeakerE = -14;
+    public static final double SpeakerE = .208;
     public static final double AmpS = 26;
-    public static final double AmpE = -32;
+    public static final double AmpE = .591;
     public static final double FeederS = 19;
-    public static final double FeederE = -28;
+    public static final double FeederE = .518;
     public static final double ClimberS = 0;
-    public static final double ClimberE = -19;
+    public static final double ClimberE = .351;
 
   }
 

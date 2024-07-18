@@ -23,10 +23,10 @@ public class FeederToHome extends SequentialCommandGroup {
     this.m_arms = m_arms;
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToHome),
-      new MoveArmsToPosition(m_arms, 14, -22, RobotPrefs.getMiddleTolerance()),
-      new MoveArmsToPosition(m_arms, 8, -15, RobotPrefs.getMiddleTolerance()),
-      new MoveArmsToPosition(m_arms, 2, -6, RobotPrefs.getMiddleTolerance()),
-      new MoveArmsToPosition(m_arms, 0, -3, RobotPrefs.getMiddleTolerance()),
+      new MoveArmsToPosition(m_arms, 14, .407, RobotPrefs.getMiddleTolerance()),
+      new MoveArmsToPosition(m_arms, 8, .277, RobotPrefs.getMiddleTolerance()),
+      new MoveArmsToPosition(m_arms, 2, .111, RobotPrefs.getMiddleTolerance()),
+      new MoveArmsToPosition(m_arms, 0, .055, RobotPrefs.getMiddleTolerance()),
       new MoveArmsToPosition(m_arms, 0, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
       new ToggleArmPosition(m_arms, ArmPosition.Home)
     

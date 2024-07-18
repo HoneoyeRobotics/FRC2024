@@ -25,10 +25,10 @@ public class HomeToPickUp extends SequentialCommandGroup {
     addCommands(
       
         new ToggleArmPosition(m_arms, ArmPosition.ToPickup),
-    new MoveArmsToPosition(m_arms, 0, -5, RobotPrefs.getMiddleTolerance()),
-    new MoveArmsToPosition(m_arms, 6, -7, RobotPrefs.getMiddleTolerance()),
-    new MoveArmsToPosition(m_arms, 12, -7, RobotPrefs.getMiddleTolerance()),
-    new MoveArmsToPosition(m_arms, 18, -7, RobotPrefs.getMiddleTolerance()),
+    new MoveArmsToPosition(m_arms, 0, .092, RobotPrefs.getMiddleTolerance()),
+    new MoveArmsToPosition(m_arms, 6, .129, RobotPrefs.getMiddleTolerance()),
+    new MoveArmsToPosition(m_arms, 12, .129, RobotPrefs.getMiddleTolerance()),
+    new MoveArmsToPosition(m_arms, 18,.129, RobotPrefs.getMiddleTolerance()),
     new MoveArmsToPosition(m_arms, ArmPositions.PickupS , ArmPositions.PickupE, RobotPrefs.getEndTolerance()).withTimeout(1.5),
     new ToggleArmPosition(m_arms, ArmPosition.Pickup)
     );
