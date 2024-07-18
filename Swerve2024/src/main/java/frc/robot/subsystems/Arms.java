@@ -31,6 +31,7 @@ public class Arms extends SubsystemBase {
   private double shoulderMotorSetpoint = 0.0;
   private double elbowMotorSetpoint = 0.0;
 
+  private ArmPosition prevPosition = ArmPosition.Home;
   private ArmPosition armPosition = ArmPosition.Home;
 
   public Arms() {
@@ -38,7 +39,7 @@ public class Arms extends SubsystemBase {
     shoulderMotor.getEncoder().setPosition(0.0);
     elbowMotor.getEncoder().setPosition(0.0);
 
-    shoulderPIDContrller = new PIDController(0.2, 0, 0);
+    shoulderPIDContrller = new PIDController(0.4, 0, 0);
     shoulderPIDContrller.setSetpoint(0.0);
     shoulderPIDContrller.setTolerance(0.5);
 
@@ -56,12 +57,33 @@ public class Arms extends SubsystemBase {
   }
 
   public void setArmPosition(ArmPosition armPosition) {
+    prevPosition = this.armPosition;
     this.armPosition = armPosition;
     SmartDashboard.putString("Arm Position", armPosition.toString());
+    SmartDashboard.putString("Prev Position", prevPosition.toString());
   }
 
   public ArmPosition getArmPosition() {
     return armPosition;
+  }
+
+  
+  public ArmPosition getPreviousPosition() {
+    return prevPosition;
+  }
+
+
+  public void FixArmInTeleop(){
+    switch(armPosition){
+      case ToAmp:
+      case ToClimber:
+      case ToFeeder:
+      case ToSpeaker:
+      case ToHome:
+      case ToPickup:
+        armPosition = prevPosition;
+        break;
+    }
   }
 
   public void setTolerance(double tolerance) {
@@ -214,10 +236,10 @@ public class Arms extends SubsystemBase {
           armPosition == ArmPosition.ToPickup &&
           elbowMotorSetpoint == ArmPositions.PickupE &&
           shoulderMotorSetpoint == ArmPositions.PickupS &&
-          getShoulderPosition() > 15)   
+          getShoulderPosition() > 14)   
           {       
             shoulderRotateSpeed = 0;
-           System.out.println("Cut shoulder power.");
+         //  System.out.println("Cut shoulder power.");
           }
       shoulderMotor.set(shoulderRotateSpeed);
       elbowMotor.set(elbowRotateSpeed);

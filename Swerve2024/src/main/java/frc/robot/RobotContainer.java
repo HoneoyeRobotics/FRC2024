@@ -56,11 +56,13 @@ public class RobotContainer {
         private final Shooter m_shooter = new Shooter();
         public final Arms m_arms = new Arms();
         public final Climber m_climber = new Climber();
-private SendableChooser<Command> auto = new SendableChooser<>();
+        private SendableChooser<Command> auto = new SendableChooser<>();
+
         public void teleopInit() {
                 // m_arms.resetLowerElbowEncoder();
 
                 // m_arms.resetUpperElbowEncoder();
+                m_arms.FixArmInTeleop();
                 m_arms.resetallpositions();
         }
 
@@ -84,7 +86,20 @@ private SendableChooser<Command> auto = new SendableChooser<>();
                 NamedCommands.registerCommand("ArmHome", new ArmHome(m_arms));
                 NamedCommands.registerCommand("ArmPickup", new ArmPickup(m_arms));
                 NamedCommands.registerCommand("RunPickup", new RunShooter(m_shooter, -0.5));
-              
+                NamedCommands.registerCommand("RunPickupReverse", new RunShooter(m_shooter, 0.25));
+                NamedCommands.registerCommand("WigglePickup", 
+                        new SequentialCommandGroup(
+                                new RunShooterDontRequire(m_shooter, 0.25).withTimeout(0.25),
+                                new RunShooterDontRequire(m_shooter, -0.5).withTimeout(1)
+                        )
+                );
+
+                SmartDashboard.putData("wiggle",  new SequentialCommandGroup(
+                                new RunShooterDontRequire(m_shooter, 0.2).withTimeout(0.1),
+                                new RunShooterUntilTripped(m_shooter, -0.2)
+                        ));
+
+                
                 m_robotDrive.setDefaultCommand(
                                 // The left stick controls translation of the robot.
                                 // Turning is controlled by the X axis of the right stick.
@@ -108,29 +123,42 @@ private SendableChooser<Command> auto = new SendableChooser<>();
                                 new ResetLowerElbowEncoder(m_arms).ignoringDisable(true));
                 SmartDashboard.putData("Reset Elbow Encoder", new ResetUpperElbowEncoder(m_arms).ignoringDisable(true));
 
+                // SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
+                // SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber,
+                // true).withTimeout(3));
 
-                SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
-                SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber, true).withTimeout(3));
                 SmartDashboard.putData("Reset Climber Enc", new ResetClimberEncoders(m_climber));
-                SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber, true));
+                // SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber,
+                // true));
 
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
-               // auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
-                auto.setDefaultOption("Center back, center, feeder", new PathPlannerAuto("Auto 2"));
-                auto.addOption("Feeder, center, far 2nd Amp", new PathPlannerAuto("Auto 3"));
-                auto.addOption("Amp back", new PathPlannerAuto("Auto 4"));
-                auto.addOption("Feeder back", new PathPlannerAuto("Auto 5"));
-               // auto.addOption("auto 6", new PathPlannerAuto("Auto 6"));
-                auto.addOption("Center back Amp", new PathPlannerAuto("Auto 7"));
-                auto.addOption("Center far 2nd amp", new PathPlannerAuto("Auto 8"));
-                auto.addOption("Feeder far feeder", new PathPlannerAuto("Auto 9"));
-                auto.addOption("Feeder 2nd far", new PathPlannerAuto("Auto 10"));
-                auto.addOption("Feeder far middle", new PathPlannerAuto("Auto 11"));
+                // auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
+                auto.setDefaultOption("Auto 2", new PathPlannerAuto("Auto 2"));
+                
+                auto.addOption("Auto 2 lame", new PathPlannerAuto("Auto 2 lame"));
+                auto.addOption("AUTO STAY", new PathPlannerAuto("AUTO STAY"));
+                
+                auto.addOption("Auto 2-up", new PathPlannerAuto("Auto 2-Up"));
+                auto.addOption("Auto 3", new PathPlannerAuto("Auto 3"));
+                auto.addOption("Auto 4", new PathPlannerAuto("Auto 4"));
+                auto.addOption("Auto 5", new PathPlannerAuto("Auto 5"));
+                // auto.addOption("auto 6", new PathPlannerAuto("Auto 6"));
+                auto.addOption("Auto 7", new PathPlannerAuto("Auto 7"));
+                auto.addOption("Auto 8", new PathPlannerAuto("Auto 8"));
+                auto.addOption("Auto 9", new PathPlannerAuto("Auto 9"));
+                auto.addOption("Auto 10", new PathPlannerAuto("Auto 10"));
+                auto.addOption("Auto YOUR MOM", new PathPlannerAuto("Auto 11"));
                 auto.addOption("Shoot than stop-AMP", new PathPlannerAuto("Shoot than stop-AMP"));
                 auto.addOption("Shoot than stop-Feeder", new PathPlannerAuto("Shoot than stop-Feeder"));
-                //auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
+                auto.addOption("KRT", new PathPlannerAuto("KRT"));
+                auto.addOption("Auto STAY AT UR MOMS HOUSE", new PathPlannerAuto("Auto STAY AT UR MOMS HOUSE"));
+                auto.addOption("Auto STAY AT UR DADS HOUSE", new PathPlannerAuto("Auto STAY AT UR DADS HOUSE"));
+                auto.addOption("Sabatoage", new PathPlannerAuto("Sabatoage"));
+                auto.addOption("Sabatoage and shoot", new PathPlannerAuto("Sabatoage and shoot"));
+                // auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
                 SmartDashboard.putData("Auto Mode", auto);
-                SmartDashboard.putData(m_climber);
+                // SmartDashboard.putData(m_climber);
+          //      SmartDashboard.putData("Calibrate Gyro", new CalibrateGyro(m_robotDrive));
 
         }
 
@@ -156,7 +184,8 @@ private SendableChooser<Command> auto = new SendableChooser<>();
                 buttonBoard.axisGreaterThan(0, 0.2).onTrue(new MoveShoulder(m_arms, -1));
                 buttonBoard.axisLessThan(1, -0.2).onTrue(new MoveElbow(m_arms, -1));
                 buttonBoard.axisGreaterThan(1, 0.2).onTrue(new MoveElbow(m_arms, 1));
-                //buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
+                m_driverController.back().onTrue(new ResetGyro(m_robotDrive));
+                // buttonBoard.button(8).onTrue(new ToggleArmPID(m_arms));
                 // shoot top
                 buttonBoard.button(7).onTrue(new ShootSpeaker(m_shooter));
                 // shoot amp
@@ -166,10 +195,12 @@ private SendableChooser<Command> auto = new SendableChooser<>();
                 buttonBoard.button(3).onTrue(new ArmPickup(m_arms));
                 buttonBoard.button(2).onTrue(new ArmAmp(m_arms));
                 buttonBoard.button(6).onTrue(new ArmSpeaker(m_arms));
-                buttonBoard.button(10).onTrue(new ArmFeeder(m_arms));
-                //buttonBoard.button(10).onTrue(new ToggleArmPosition(m_arms, ArmPosition.Home));
+                // buttonBoard.button(10).onTrue(new ArmFeeder(m_arms));
+                buttonBoard.button(10).onTrue(new ForceHome(m_arms));
+                buttonBoard.button(9).onTrue(new ToggleArmPosition(m_arms,
+                ArmPosition.Home));
 
-                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, true).withTimeout(3));
+                buttonBoard.button(5).onTrue(new RetractClimber(m_climber, true).withTimeout(8));
                 buttonBoard.button(4).onTrue(new DoTheClimb(m_climber, m_arms));
                 m_driverController.axisGreaterThan(5, 0.2).whileTrue(new RunRightClimber(m_climber, 0.1));
                 m_driverController.axisLessThan(5, -0.2).whileTrue(new RunRightClimber(m_climber, -0.1));
@@ -180,5 +211,6 @@ private SendableChooser<Command> auto = new SendableChooser<>();
         public Command getAutonomousCommand() {
                 return auto.getSelected();
         }
+
 
 }

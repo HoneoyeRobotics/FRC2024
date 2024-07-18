@@ -1,7 +1,7 @@
 [NetworkTables Storage 3.0]
 double "/Preferences/ElbowD"=0
 double "/Preferences/ElbowI"=0
-double "/Preferences/ElbowMovement"=0.25
+double "/Preferences/ElbowMovement"=1
 double "/Preferences/ElbowP"=0.2
 double "/Preferences/EndTolerance"=0.5
 double "/Preferences/MiddleTolerance"=1

@@ -11,11 +11,12 @@ import frc.robot.subsystems.DriveSubsystem;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ResetGyro extends InstantCommand {
+public class CalibrateGyro extends InstantCommand {
   private DriveSubsystem m_drive;
-  public ResetGyro(DriveSubsystem drive) {
+  public CalibrateGyro(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drive = drive;
+    this.ignoringDisable(true);
   }
 
   // Called when the command is initially scheduled.
@@ -23,7 +24,8 @@ public class ResetGyro extends InstantCommand {
   public void initialize() {
     
 
-    m_drive.resetOdometry(new Pose2d());
+    m_drive.calibrateGyro();
+    
 
   }
 }

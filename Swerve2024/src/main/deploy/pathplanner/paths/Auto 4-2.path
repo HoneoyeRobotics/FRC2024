@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.017872741315662,
-        "y": 7.046549915573137
+        "x": 3.701677638827334,
+        "y": 7.000326399702681
       },
       "isLocked": false,
       "linkedName": "Auto 4-1 end"
@@ -39,7 +39,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -125.39479584498709,
+    "rotation": -120.0,
     "rotateFast": true
   },
   "reversed": false,

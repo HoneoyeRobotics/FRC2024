@@ -24,7 +24,7 @@ public class ClimberToHome extends SequentialCommandGroup {
     this.m_arms = m_arms;
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToHome),
-        new MoveArmsToPosition(m_arms, 0,0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
+        new MoveArmsToPosition(m_arms, -1,0, RobotPrefs.getEndTolerance()).withTimeout(1.5),
         new ToggleArmPosition(m_arms, ArmPosition.Home)
 
     );

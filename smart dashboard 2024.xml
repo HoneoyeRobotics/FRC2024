@@ -10,7 +10,7 @@
 		<location x="31" y="467"/>
 	</widget>
 	<widget field="Auto Mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="380" y="218"/>
+		<location x="367" y="47"/>
 	</widget>
 	<widget field="Reset Climber Enc" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="68" y="439"/>
@@ -43,40 +43,28 @@
 	<widget field="Right Climber Pos" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="195" y="494"/>
 	</widget>
-	<widget field="Stab End" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="326"/>
-	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="486" y="4"/>
+		<location x="517" y="4"/>
 		<width>664</width>
 		<height>538</height>
 		<property name="Degrees Rotation" value="180"/>
 		<property name="Camera Choice" value=""/>
 	</static-widget>
 	<widget field="Sensor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="248" y="88"/>
+		<location x="148" y="99"/>
 	</widget>
 	<widget field="Arms" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 		<location x="0" y="64"/>
 	</widget>
-	<widget field="Arm Position" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="106" y="306"/>
-	</widget>
-	<widget field="Stab Setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="16" y="381"/>
-	</widget>
-	<widget field="Toggle stab pid" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="5" y="350"/>
-	</widget>
 	<widget field="Stab Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="17" y="402"/>
+		<location x="68" y="422"/>
 	</widget>
 	<widget field="ShoulderTol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="6" y="135"/>
 		<height>19</height>
 	</widget>
 	<widget field="ElbowTol" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="240" y="145"/>
+		<location x="186" y="133"/>
 		<height>19</height>
 	</widget>
 	<widget field="ElbowAtSetpoint" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
@@ -93,7 +81,7 @@
 		<location x="129" y="60"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="1159" y="95"/>
+		<location x="1188" y="63"/>
 		<height>429</height>
 	</static-widget>
 	<widget field="Arm Limit Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
@@ -105,13 +93,13 @@
 		<location x="138" y="25"/>
 	</widget>
 	<widget field="Reset Elbow Encoder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="214" y="162"/>
+		<location x="180" y="154"/>
 	</widget>
 	<widget field="Reset Shoulder Encoder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="5" y="161"/>
 	</widget>
 	<widget field="elbowSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="226" y="214"/>
+		<location x="213" y="214"/>
 	</widget>
 	<widget field="shoulderSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="22" y="214"/>
@@ -126,7 +114,7 @@
 		<location x="219" y="233"/>
 	</widget>
 	<widget field="elbowSetpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="218" y="192"/>
+		<location x="206" y="191"/>
 	</widget>
 	<widget field="angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="143" y="2"/>
@@ -143,4 +131,7 @@
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="Stab End"/>
+	<hidden field="Stab Setpoint"/>
+	<hidden field="Toggle stab pid"/>
 </xml>

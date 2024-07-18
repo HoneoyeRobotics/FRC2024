@@ -3,51 +3,51 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.8190257821957083,
-        "y": 4.446702226737787
+        "x": 7.63590181725818,
+        "y": 7.518969219756621
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6602937710379921,
-        "y": 3.7348600823327778
+        "x": 8.65273512365313,
+        "y": 7.341723047078376
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Sab 1 end"
     },
     {
       "anchor": {
-        "x": 3.9622248613866597,
-        "y": 1.848940634818207
+        "x": 8.242270302723488,
+        "y": 6.65139584824216
       },
       "prevControl": {
-        "x": 2.71266478568993,
-        "y": 2.768788600640264
+        "x": 8.195626573072394,
+        "y": 7.7615166139382366
       },
       "nextControl": {
-        "x": 5.21178493708339,
-        "y": 0.9290926689961492
+        "x": 8.2608752768881,
+        "y": 6.208597463124389
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.4243337245456695,
-        "y": 0.7209569454267715
+        "x": 8.242270302723488,
+        "y": 0.9328745930178319
       },
       "prevControl": {
-        "x": 6.4243337245456695,
-        "y": 0.7209569454267715
+        "x": 8.372872745746557,
+        "y": 1.9963516290628127
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Auto 9-1 end"
+      "linkedName": "Sab 2 end"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.1,
-      "rotationDegrees": 0,
+      "waypointRelativePos": 0.0,
+      "rotationDegrees": -90.0,
       "rotateFast": false
     }
   ],
@@ -61,13 +61,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
-    "rotateFast": false
+    "rotation": -90.0,
+    "rotateFast": true
   },
   "reversed": false,
-  "folder": "Auto 9",
+  "folder": "Sabotage",
   "previewStartingState": {
-    "rotation": 120.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": false

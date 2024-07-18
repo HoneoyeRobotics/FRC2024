@@ -112,7 +112,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Auto 2-4"
+                  "pathName": "Auto 2-4 up"
                 }
               },
               {
@@ -169,7 +169,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Auto 2-5"
+                  "pathName": "Auto 2-5 up"
                 }
               },
               {
@@ -195,12 +195,6 @@
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "WigglePickup"
                 }
               }
             ]

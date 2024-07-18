@@ -24,7 +24,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 1.0
+                  "waitTime": 1.25
                 }
               },
               {
@@ -37,7 +37,7 @@
           }
         },
         {
-          "type": "race",
+          "type": "parallel",
           "data": {
             "commands": [
               {
@@ -51,24 +51,37 @@
                 "data": {
                   "commands": [
                     {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 3.0
+                      }
+                    },
+                    {
                       "type": "named",
                       "data": {
                         "name": "ArmPickup"
                       }
-                    },
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 1.0
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "RunPickup"
-                      }
                     }
                   ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Auto 9-2"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "RunPickup"
                 }
               }
             ]
@@ -81,7 +94,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Auto 9-2"
+                  "pathName": "Auto 9-3"
                 }
               },
               {

@@ -3,52 +3,52 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.8190257821957083,
-        "y": 4.446702226737787
+        "x": 7.551943103886208,
+        "y": 0.7183134366268737
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6602937710379921,
-        "y": 3.7348600823327778
+        "x": 8.551943103886208,
+        "y": 0.7183134366268735
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Sab 1 weeeee end"
     },
     {
       "anchor": {
-        "x": 3.9622248613866597,
-        "y": 1.848940634818207
+        "x": 8.391530237605929,
+        "y": 3.5729096912739284
       },
       "prevControl": {
-        "x": 2.71266478568993,
-        "y": 2.768788600640264
+        "x": 8.419516475396588,
+        "y": 2.015009120927333
       },
       "nextControl": {
-        "x": 5.21178493708339,
-        "y": 0.9290926689961492
+        "x": 8.363414759798367,
+        "y": 5.138004622561508
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.4243337245456695,
-        "y": 0.7209569454267715
+        "x": 8.167640335280671,
+        "y": 7.435010506384649
       },
       "prevControl": {
-        "x": 6.4243337245456695,
-        "y": 0.7209569454267715
+        "x": 8.634077631791628,
+        "y": 6.8193132749901855
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Auto 9-1 end"
+      "linkedName": "Sab 2 weee"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.1,
-      "rotationDegrees": 0,
-      "rotateFast": false
+      "waypointRelativePos": 0.3,
+      "rotationDegrees": 89.92157572287742,
+      "rotateFast": true
     }
   ],
   "constraintZones": [],
@@ -61,13 +61,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
-    "rotateFast": false
+    "rotation": -179.1815445383114,
+    "rotateFast": true
   },
   "reversed": false,
-  "folder": "Auto 9",
+  "folder": "Sabotage",
   "previewStartingState": {
-    "rotation": 120.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": false
