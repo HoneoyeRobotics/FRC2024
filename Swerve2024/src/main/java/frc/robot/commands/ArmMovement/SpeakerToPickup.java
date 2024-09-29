@@ -29,7 +29,7 @@ public class SpeakerToPickup extends SequentialCommandGroup {
     double startE = ArmPositions.SpeakerE;
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToPickup),
-        new MoveArmsToPosition(m_arms, 5, -10, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 5, ArmPositions.PickupE, RobotPrefs.getMiddleTolerance()),
       //  new MoveArmsToPosition(m_arms, 11, -18, RobotPrefs.getMiddleTolerance()),
        // new MoveArmsToPosition(m_arms, 15, ArmPositions.PickupE, RobotPrefs.getMiddleTolerance()),
        // new MoveArmsToPosition(m_arms, 3, -7, RobotPrefs.getMiddleTolerance()),

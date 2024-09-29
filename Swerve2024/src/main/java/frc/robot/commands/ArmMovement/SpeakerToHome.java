@@ -24,7 +24,7 @@ public class SpeakerToHome extends SequentialCommandGroup {
     addCommands(
         new ToggleArmPosition(m_arms, ArmPosition.ToHome),
       //  new MoveArmsToPosition(m_arms, 11, -18, RobotPrefs.getMiddleTolerance()),
-        new MoveArmsToPosition(m_arms, 6, .222, RobotPrefs.getMiddleTolerance()),
+        new MoveArmsToPosition(m_arms, 0, .222, RobotPrefs.getMiddleTolerance()),
        // new MoveArmsToPosition(m_arms, 3, -7, RobotPrefs.getMiddleTolerance()),
        // new MoveArmsToPosition(m_arms, 0, -4, RobotPrefs.getMiddleTolerance()),
         new MoveArmsToPosition(m_arms, -1, 0, RobotPrefs.getEndTolerance()).withTimeout(1.5),

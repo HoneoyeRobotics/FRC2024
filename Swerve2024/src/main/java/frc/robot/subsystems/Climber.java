@@ -80,7 +80,7 @@ public class Climber extends SubsystemBase {
     // SmartDashboard.putNumber("RightClimbPos", RightClimber.getEncoder().getPosition()); 
 
     //check climber position
-
+SmartDashboard.putBoolean("hold Climber", holdClimber);
 
     if(holdClimber == true){
       setLeftClimber(LeftClimbPID.calculate(getLeftClimberPosition()));

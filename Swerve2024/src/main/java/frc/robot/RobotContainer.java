@@ -123,13 +123,14 @@ public class RobotContainer {
                                 new ResetLowerElbowEncoder(m_arms).ignoringDisable(true));
                 SmartDashboard.putData("Reset Elbow Encoder", new ResetUpperElbowEncoder(m_arms).ignoringDisable(true));
 
-                // SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
-                // SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber,
-                // true).withTimeout(3));
+                SmartDashboard.putData("Deploy Climber", new DeployClimber(m_climber));
+                SmartDashboard.putData("Retract Climber", new RetractClimber(m_climber,
+                true).withTimeout(3));
 
                 SmartDashboard.putData("Reset Climber Enc", new ResetClimberEncoders(m_climber));
-                // SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber,
-                // true));
+                SmartDashboard.putData("Retract and hold", new RetractClimber(m_climber,
+                true));
+                SmartDashboard.putData("Toggleclimber", new Toggleclimber(m_climber));
 
                 SmartDashboard.putData("Reset Gyro", new ResetGyro(m_robotDrive).ignoringDisable(true));
                 // auto.addOption("auto 1", new PathPlannerAuto("Auto 1"));
@@ -155,6 +156,7 @@ public class RobotContainer {
                 auto.addOption("Auto STAY AT UR DADS HOUSE", new PathPlannerAuto("Auto STAY AT UR DADS HOUSE"));
                 auto.addOption("Sabatoage", new PathPlannerAuto("Sabatoage"));
                 auto.addOption("Sabatoage and shoot", new PathPlannerAuto("Sabatoage and shoot"));
+                 auto.addOption("Auto 1", new PathPlannerAuto("Auto 1"));
                 // auto.addOption("Speaker-amp-mid", new PathPlannerAuto("Speaker-amp-mid"));
                 SmartDashboard.putData("Auto Mode", auto);
                 // SmartDashboard.putData(m_climber);
