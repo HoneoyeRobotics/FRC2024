@@ -64,6 +64,8 @@ public class RobotContainer {
                 // m_arms.resetUpperElbowEncoder();
                 m_arms.FixArmInTeleop();
                 m_arms.resetallpositions();
+
+                m_climber.holdClimbersHere();
         }
 
         // The driver's controller

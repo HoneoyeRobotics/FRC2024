@@ -41,6 +41,11 @@ public class Climber extends SubsystemBase {
     RightClimbPID.setSetpoint(-0.5);
   }
 
+  public void holdClimbersHere(){
+    LeftClimbPID.setSetpoint(LeftClimber.getEncoder().getPosition());
+    RightClimbPID.setSetpoint(RightClimber.getEncoder().getPosition());
+  }
+
 
   public boolean holdClimber = true;
   public void resetLeftClimberEncoder(){
